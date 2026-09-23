@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ad Günün Mübarək, Salihə! 🌸</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff8fb3;
+    --deep-pink:#ff5e94;
+    --rose:#c9184a;
+    --purple:#a370f7;
+    --gold:#ffd166;
+    --cream:#fff6f0;
+    --bg1:#3a0d5c;
+    --bg2:#7b2a8c;
+    --bg3:#c96ea0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:'Poppins', sans-serif;
+    background: radial-gradient(circle at 20% 15%, #5b1a7a 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, #932e6e 0%, transparent 50%),
+                linear-gradient(135deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    color:#fff;
+    text-align:center;
+    padding:24px;
+    position:relative;
+  }
+
+  /* ---- floating background florals ---- */
+  .bg-flower{
+    position:fixed;
+    font-size:2.4rem;
+    opacity:0.25;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.15));
+    animation: drift 9s ease-in-out infinite;
+    pointer-events:none;
+    z-index:0;
+  }
+  @keyframes drift{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-24px) rotate(12deg);}
+  }
+
+  .card{
+    background: linear-gradient(160deg, rgba(46,14,74,0.72), rgba(88,26,86,0.72));
+    backdrop-filter: blur(20px) saturate(120%);
+    border-radius: 28px;
+    padding: 46px 32px 40px;
+    max-width: 540px;
+    width:100%;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.2);
+    position:relative;
+    z-index:2;
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  /* corner floral flourishes */
+  .corner{
+    position:absolute;
+    width:90px;
+    height:90px;
+    opacity:0.85;
+    pointer-events:none;
+  }
+  .corner.tl{top:-6px;left:-6px;}
+  .corner.tr{top:-6px;right:-6px;transform:scaleX(-1);}
+  .corner.bl{bottom:-6px;left:-6px;transform:scaleY(-1);}
+  .corner.br{bottom:-6px;right:-6px;transform:scale(-1,-1);}
+
+  h1{
+    font-family:'Playfair Display', serif;
+    font-size: 2.1rem;
+    margin-bottom: 6px;
+    background: linear-gradient(90deg,var(--gold),var(--pink) 60%,var(--purple));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:0.5px;
+  }
+  p.sub{
+    opacity:0.85;
+    margin-bottom: 26px;
+    font-size:1.02rem;
+    font-weight:300;
+  }
+
+  /* Countdown view */
+  #countdownView .timer{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin: 22px 0 14px;
+    flex-wrap:wrap;
+  }
+  .timebox{
+    background: rgba(255,255,255,0.13);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:16px;
+    padding:16px 18px;
+    min-width:74px;
+  }
+  .timebox .num{
+    font-size:1.9rem;
+    font-weight:600;
+    color:var(--gold);
+    font-family:'Playfair Display', serif;
+  }
+  .timebox .lbl{
+    font-size:0.72rem;
+    opacity:0.8;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+  }
+  .lockmsg{
+    margin-top: 24px;
+    font-size:0.92rem;
+    opacity:0.7;
+  }
+  .seal{
+    font-size:2.6rem;
+    margin-bottom:6px;
+  }
+
+  /* Celebration view */
+  #celebrationView{display:none;}
+  .balloon{
+    font-size:2.6rem;
+    display:inline-block;
+    animation: float 3s ease-in-out infinite;
+    margin:0 4px;
+  }
+  .balloon:nth-child(2){animation-delay:0.4s;}
+  .balloon:nth-child(3){animation-delay:0.8s;}
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+  }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin: 14px auto 4px;
+    opacity:0.9;
+  }
+  .divider .line{
+    height:1px;
+    width:56px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .divider .bloom{font-size:1.1rem;}
+
+  .cake{
+    font-size:3.6rem;
+    margin: 10px 0 8px;
+    display:inline-block;
+    animation: pop 0.6s ease-out;
+  }
+  @keyframes pop{
+    0%{transform:scale(0.3) rotate(-8deg);opacity:0;}
+    70%{transform:scale(1.12) rotate(3deg);opacity:1;}
+    100%{transform:scale(1) rotate(0);}
+  }
+
+  .greeting{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    margin: 16px 0 10px;
+    color:var(--cream);
+  }
+  .name{
+    font-weight:700;
+    font-style:normal;
+    font-family:'Dancing Script', cursive;
+    font-size:1.6rem;
+    color:var(--gold);
+    display:inline-block;
+    padding:0 2px;
+  }
+
+  .poem{
+    margin: 8px 0 18px;
+    font-family:'Dancing Script', cursive;
+    font-size:1.45rem;
+    line-height:1.55;
+    color:#fff6f0;
+  }
+  .poem .pline{
+    display:block;
+    opacity:0;
+    transform: translateY(14px);
+    animation: lineIn 0.7s ease forwards;
+  }
+  @keyframes lineIn{
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .closing{
+    font-family:'Poppins', sans-serif;
+    font-weight:400;
+    font-size:1rem;
+    margin-top:16px;
+    opacity:0.95;
+    line-height:1.6;
+  }
+
+  .flower-row{
+    margin-top:18px;
+    font-size:1.3rem;
+    letter-spacing:6px;
+    opacity:0.9;
+  }
+
+  canvas#petals{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  @media (max-width:480px){
+    .card{padding:36px 20px 32px;}
+    h1{font-size:1.7rem;}
+    .poem{font-size:1.2rem;}
+    .name{font-size:1.35rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ambient floating flowers -->
+<div class="bg-flower" style="top:8%;left:6%;animation-duration:8s;">🌸</div>
+<div class="bg-flower" style="top:70%;left:10%;animation-duration:11s;">🌷</div>
+<div class="bg-flower" style="top:18%;left:85%;animation-duration:10s;">🌼</div>
+<div class="bg-flower" style="top:78%;left:88%;animation-duration:9s;">🌺</div>
+<div class="bg-flower" style="top:45%;left:3%;animation-duration:12s;">🍃</div>
+<div class="bg-flower" style="top:40%;left:92%;animation-duration:9.5s;">🌸</div>
+
+<canvas id="petals"></canvas>
+
+<div class="card">
+
+  <!-- corner floral SVGs -->
+  <svg class="corner tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#ffd166" stroke-width="2" opacity="0.8">
+      <path d="M4 60 Q4 4 60 4" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(10,10)">
+      <circle cx="0" cy="0" r="5" fill="#ff8fb3"/>
+      <circle cx="9" cy="3" r="4" fill="#ffd166"/>
+      <circle cx="3" cy="10" r="4" fill="#a370f7"/>
+    </g>
+  </svg>
+  <svg class="corner tr" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#ffd166" stroke-width="2" opacity="0.8">
+      <path d="M4 60 Q4 4 60 4" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(10,10)">
+      <circle cx="0" cy="0" r="5" fill="#ff8fb3"/>
+      <circle cx="9" cy="3" r="4" fill="#ffd166"/>
+      <circle cx="3" cy="10" r="4" fill="#a370f7"/>
+    </g>
+  </svg>
+  <svg class="corner bl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#ffd166" stroke-width="2" opacity="0.8">
+      <path d="M4 60 Q4 4 60 4" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(10,10)">
+      <circle cx="0" cy="0" r="5" fill="#ff8fb3"/>
+      <circle cx="9" cy="3" r="4" fill="#ffd166"/>
+      <circle cx="3" cy="10" r="4" fill="#a370f7"/>
+    </g>
+  </svg>
+  <svg class="corner br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#ffd166" stroke-width="2" opacity="0.8">
+      <path d="M4 60 Q4 4 60 4" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(10,10)">
+      <circle cx="0" cy="0" r="5" fill="#ff8fb3"/>
+      <circle cx="9" cy="3" r="4" fill="#ffd166"/>
+      <circle cx="3" cy="10" r="4" fill="#a370f7"/>
+    </g>
+  </svg>
+
+  <div id="countdownView">
+    <div class="seal">🔐🌷</div>
+    <h1>Bir sirr var...</h1>
+    <p class="sub">Bu səhifə <strong>ad günündə</strong> açılacaq. Səbrlə gözlə 😉</p>
+    <div class="timer">
+      <div class="timebox"><div class="num" id="days">0</div><div class="lbl">gün</div></div>
+      <div class="timebox"><div class="num" id="hours">0</div><div class="lbl">saat</div></div>
+      <div class="timebox"><div class="num" id="minutes">0</div><div class="lbl">dəqiqə</div></div>
+      <div class="timebox"><div class="num" id="seconds">0</div><div class="lbl">saniyə</div></div>
+    </div>
+    <p class="lockmsg">Geri sayım bitəndə hədiyyə özü açılacaq 🔒</p>
+  </div>
+
+  <div id="celebrationView">
+    <div>
+      <span class="balloon">🎈</span>
+      <span class="balloon">🎉</span>
+      <span class="balloon">🎈</span>
+    </div>
+    <h1>AD GÜNÜN MÜBARƏK!</h1>
+    <div class="cake">🎂</div>
+
+    <div class="divider"><span class="line"></span><span class="bloom">🌸</span><span class="line"></span></div>
+
+    <p class="greeting">Dostum <span class="name">Salihə</span>,</p>
+
+    <p class="poem" id="poemLines">
+      <span class="pline">Bu gün sənin ad günündü,</span>
+      <span class="pline">bir şair olaraq bunu şeirlə təbrik etmək istəyirəm ✨</span>
+      <span class="pline">Soruşma hansı rəng yaraşar mənə,</span>
+      <span class="pline">bütün rənglər yaranıb sənə görə.</span>
+      <span class="pline">Dünyanı yaradan al-əlvan rənglər,</span>
+      <span class="pline">təbiətə yaraşmadı sənin qədər. 💖</span>
+      <span class="pline">Günəş işığında parlayan üzün,</span>
+      <span class="pline">dinləyənə ürək verən sözün,</span>
+      <span class="pline">göy gözlər qəşəngdi deyənlər,</span>
+      <span class="pline">görmüyüb axı sənin gözün.</span>
+    </p>
+
+    <p class="closing">
+      Ad gününü təbrik edirəm, istədiyin gələcəyin<br>
+      səninlə olmağı diləyi ilə 🎊
+    </p>
+
+    <div class="flower-row">🌸 🌷 🌼 🌺 🌸</div>
+  </div>
+
+</div>
+
+<script>
+const target = new Date(2026, 8, 28, 0, 0, 0);
+
+const countdownView = document.getElementById('countdownView');
+const celebrationView = document.getElementById('celebrationView');
+
+function stagger(){
+  document.querySelectorAll('#poemLines .pline').forEach((el,i)=>{
+    el.style.animationDelay = (0.15*i) + 's';
+  });
+}
+
+function updateCountdown(){
+  const now = new Date();
+  const diff = target - now;
+
+  if(diff <= 0){
+    countdownView.style.display = 'none';
+    celebrationView.style.display = 'block';
+    stagger();
+    startPetals();
+    return;
+  }
+
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff / (1000*60*60)) % 24);
+  const m = Math.floor((diff / (1000*60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('days').textContent = d;
+  document.getElementById('hours').textContent = h;
+  document.getElementById('minutes').textContent = m;
+  document.getElementById('seconds').textContent = s;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ==== falling flower petals (canvas) ==== */
+let petalsRunning = false;
+function startPetals(){
+  if(petalsRunning) return;
+  petalsRunning = true;
+  const canvas = document.getElementById('petals');
+  const ctx = canvas.getContext('2d');
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const colors = ['#ff8fb3','#ff5e94','#ffd166','#c9a7f0','#ffffff','#f7c6d9'];
+  const pieces = [];
+  for(let i=0;i<90;i++){
+    pieces.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height - canvas.height,
+      size: 8+Math.random()*8,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      speed: 0.8+Math.random()*1.8,
+      drift: Math.random()*1.4-0.7,
+      rot: Math.random()*360,
+      rotSpeed: (Math.random()*3-1.5),
+      sway: Math.random()*Math.PI*2
+    });
+  }
+
+  function drawPetal(p){
+    ctx.save();
+    ctx.translate(p.x,p.y);
+    ctx.rotate(p.rot*Math.PI/180);
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.ellipse(0,0,p.size*0.55,p.size,Math.PI/4,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      p.y += p.speed;
+      p.sway += 0.02;
+      p.x += p.drift + Math.sin(p.sway)*0.5;
+      p.rot += p.rotSpeed;
+      if(p.y > canvas.height){
+        p.y = -20;
+        p.x = Math.random()*canvas.width;
+      }
+      drawPetal(p);
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+</script>
+
+</body>
+</html>
