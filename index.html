@@ -10,7 +10,7 @@
 <style>
 :root{--pink:#ff8fb3;--gold:#ffd166;--cream:#fff6f0;--purple:#a370f7}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{background:#12041f}
+html{background:#12041f;overflow-x:clip}
 body{min-height:100vh;min-height:100dvh;font-family:'Poppins',system-ui,sans-serif;color:#fff;text-align:center;display:flex;padding:max(20px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom));overflow-x:hidden;background:#12041f}
 .bg,.bg div{position:fixed;inset:0;pointer-events:none}
 .bg{z-index:0}
@@ -29,6 +29,8 @@ body{min-height:100vh;min-height:100dvh;font-family:'Poppins',system-ui,sans-ser
 #dim.on,#eyes.on{opacity:1}
 .card{position:relative;z-index:2;margin:auto;width:100%;max-width:560px;padding:44px 26px 38px;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,rgba(46,14,74,.62),rgba(88,26,86,.6));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);box-shadow:0 25px 70px rgba(0,0,0,.45);transition:opacity 1.6s ease,transform 1.6s ease}
 .card.hide{opacity:0;transform:translateY(24px) scale(.96);pointer-events:none}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(8,0,16,.45);opacity:0;transition:opacity 1.6s ease;pointer-events:none}
+body.eye .card::before{opacity:1}
 .card.glow{box-shadow:0 25px 70px rgba(0,0,0,.45),0 0 60px rgba(255,209,102,.22)}
 .corner{position:absolute;width:76px;height:76px;pointer-events:none;opacity:.9}
 .tl{top:-4px;left:-4px}.tr{top:-4px;right:-4px;transform:scaleX(-1)}.bl{bottom:-4px;left:-4px;transform:scaleY(-1)}.br{bottom:-4px;right:-4px;transform:scale(-1)}
@@ -47,7 +49,8 @@ h1{font-family:'Playfair Display',serif;font-size:2.05rem;margin-bottom:8px;back
 .greeting{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;margin:14px 0 8px;color:var(--cream);opacity:0;transition:opacity 1.4s}
 .name{font-family:'Dancing Script',cursive;font-weight:700;font-style:normal;font-size:1.7rem;color:var(--gold)}
 .poem{font-family:'Dancing Script',cursive;font-size:1.45rem;line-height:1.6;margin:8px 0 16px}
-.pl{display:block;min-height:1.6em}
+.pl{display:block;min-height:1.6em;transition:color 1.6s,text-shadow 1.6s}
+.pl.eyeline{color:#fff3d0;text-shadow:0 0 18px rgba(255,209,102,.85),0 0 40px rgba(255,143,179,.5)}
 .cur{display:inline-block;width:2px;height:1em;background:var(--gold);vertical-align:-.12em;margin-left:1px;animation:blink .7s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 .rv{opacity:0;transform:translateY(14px);transition:opacity 1.4s ease,transform 1.4s ease}
@@ -60,7 +63,7 @@ h1{font-family:'Playfair Display',serif;font-size:2.05rem;margin-bottom:8px;back
 #cake svg{width:min(62vw,240px);height:auto;filter:drop-shadow(0 10px 24px rgba(255,143,179,.3));transition:transform .3s}
 #cake:active svg{transform:scale(.96)}
 .fl{transform-origin:center bottom;transform-box:fill-box;animation:flick .5s ease-in-out infinite alternate;transition:opacity .4s}
-.fl:nth-of-type(2){animation-delay:.15s}.fl:nth-of-type(3){animation-delay:.3s}
+.fl:nth-of-type(3){animation-delay:.15s}.fl:nth-of-type(4){animation-delay:.3s}
 @keyframes flick{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.12) rotate(3deg)}}
 .out .fl{opacity:0}
 .gl{transition:opacity .6s}.out .gl{opacity:0}
@@ -71,11 +74,11 @@ h1{font-family:'Playfair Display',serif;font-size:2.05rem;margin-bottom:8px;back
 .wishmsg{font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--cream);margin-top:10px;min-height:2em;text-shadow:0 0 20px rgba(255,209,102,.6)}
 .btn{font:inherit;font-size:.9rem;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,209,102,.5);border-radius:99px;padding:12px 22px;cursor:pointer;min-height:44px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s,box-shadow .3s}
 .btn:hover{background:rgba(255,209,102,.18);box-shadow:0 0 22px rgba(255,209,102,.3)}
-#secretBtn{margin-top:26px;font-style:italic;letter-spacing:.5px}
+#secretBtn{margin-top:26px;font-style:italic;letter-spacing:.5px;transition:opacity 1.4s ease,transform 1.4s ease,background .3s,box-shadow .3s}
 #music{position:fixed;z-index:6;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));padding:10px 16px;font-size:.82rem;display:none}
-#secret{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(10,2,20,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);perspective:1200px;opacity:0;transition:opacity 1s}
+#secret{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) 20px max(20px,env(safe-area-inset-bottom));background:rgba(10,2,20,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);perspective:1200px;opacity:0;transition:opacity 1s}
 #secret.on{opacity:1}
-.card2{max-width:440px;width:100%;padding:44px 28px 30px;border-radius:26px;background:linear-gradient(160deg,rgba(60,18,90,.9),rgba(120,36,100,.85));border:1px solid rgba(255,209,102,.45);box-shadow:0 0 70px rgba(255,143,179,.3);transform:rotateY(-100deg);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.card2{max-width:440px;width:100%;max-height:100%;overflow-y:auto;padding:44px 28px 30px;border-radius:26px;background:linear-gradient(160deg,rgba(60,18,90,.9),rgba(120,36,100,.85));border:1px solid rgba(255,209,102,.45);box-shadow:0 0 70px rgba(255,143,179,.3);transform:rotateY(-100deg);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
 #secret.on .card2{transform:none}
 .card2 .tag{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.85;margin-bottom:18px}
 .card2 p.m{font-family:'Dancing Script',cursive;font-size:1.65rem;line-height:1.55;color:var(--cream)}
@@ -192,7 +195,7 @@ let started = false, lastSec = null;
 
 /* ===== Effektlər (ulduzlar, toz zərrəcikləri, ləçəklər, konfetti) ===== */
 const cv = $('fx'), cx = cv.getContext('2d');
-let W, H, petalsOn = false, parts = [];
+let W, H, petalsOn = false, parts = [], eyeMode = false, dimF = 0;
 const rs = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
 rs(); addEventListener('resize', rs);
 const cols = ['#ff8fb3','#ff5e94','#ffd166','#c9a7f0','#ffffff','#f7c6d9'];
@@ -205,11 +208,12 @@ function confetti(x, y){ if(RM) return; for(let i=0;i<(MOB ? 70 : 120);i++) part
 function fireworks(n){ if(RM) return; for(let i=0;i<n;i++) setTimeout(() => burst(W*(.15+Math.random()*.7), H*(.12+Math.random()*.35), MOB ? 40 : 60, 5.5), i*450); }
 function loop(t){
   cx.clearRect(0,0,W,H);
+  dimF += ((eyeMode ? 1 : 0) - dimF)*.05; const f = 1 - dimF*.8;
   cx.fillStyle = '#fff';
-  stars.forEach(s => { cx.globalAlpha = .25 + .55*Math.abs(Math.sin(t/1000 + s.p)); cx.beginPath(); cx.arc(s.x*W, s.y*H, s.r, 0, 6.3); cx.fill(); });
+  stars.forEach(s => { cx.globalAlpha = (.25 + .55*Math.abs(Math.sin(t/1000 + s.p)))*f; cx.beginPath(); cx.arc(s.x*W, s.y*H, s.r, 0, 6.3); cx.fill(); });
   cx.fillStyle = '#ffd98a';
-  dust.forEach(d => { d.y -= d.v; if(d.y < -.02) d.y = 1.02; cx.globalAlpha = .2 + .3*Math.abs(Math.sin(t/1800 + d.p)); cx.beginPath(); cx.arc(d.x*W + Math.sin(t/2500 + d.p)*12, d.y*H, d.r, 0, 6.3); cx.fill(); });
-  cx.globalAlpha = .85;
+  dust.forEach(d => { d.y -= d.v; if(d.y < -.02) d.y = 1.02; cx.globalAlpha = (.2 + .3*Math.abs(Math.sin(t/1800 + d.p)))*f; cx.beginPath(); cx.arc(d.x*W + Math.sin(t/2500 + d.p)*12, d.y*H, d.r, 0, 6.3); cx.fill(); });
+  cx.globalAlpha = .85*f;
   if(petalsOn) petals.forEach(p => {
     p.y += p.v; p.sw += .02; p.x += Math.sin(p.sw)*.6; p.r += p.rv;
     if(p.y > H + 20) Object.assign(p, newPetal(false));
@@ -231,6 +235,7 @@ requestAnimationFrame(loop);
 const show = (id, on = true) => $(id).classList.toggle('on', on);
 async function start(){
   if(started) return; started = true;
+  try{ await Promise.race([document.fonts.ready, sleep(1000)]); }catch(e){}
   $('final').style.display = 'none';
   $('wait').style.display = 'none';
   $('celeb').style.display = 'block';
@@ -274,18 +279,24 @@ async function poem(){
   const L = [...document.querySelectorAll('#poem .pl')];
   const T = L.map(l => l.textContent);
   L.forEach(l => { l.style.visibility = 'hidden'; }); // yer qalır, mətn görünmür
+  const EY = T.findIndex(t => t.startsWith('göy gözlər'));   // gözlər sətirləri
   for(let i = 0; i < L.length; i++){
-    if(i === 8){                                         // GÖZLƏR effekti
+    const eye = EY >= 0 && (i === EY || i === EY + 1);
+    if(i === EY){                                        // GÖZLƏR effekti
       $('dim').classList.add('on'); $('eyes').classList.add('on');
+      document.body.classList.add('eye'); eyeMode = true;
       $('card').classList.remove('glow');
-      await sleep(2200*K);
+      await sleep(2400*K);
     }
     L[i].style.visibility = 'visible';
+    if(eye) L[i].classList.add('eyeline');
     follow(L[i]);
-    await typeLine(L[i], T[i], 55);
-    await sleep(i === 9 ? 1600*K : 450*K);
+    await typeLine(L[i], T[i], eye ? 85 : 55);
+    await sleep(EY >= 0 && i === EY + 1 ? 2000*K : 450*K);
   }
   $('dim').classList.remove('on'); $('eyes').classList.remove('on');
+  document.body.classList.remove('eye'); eyeMode = false;
+  setTimeout(() => L.forEach(l => l.classList.remove('eyeline')), 1500);
   document.querySelector('.bG').style.opacity = 1;       // isti qızılı parıltı
   $('card').classList.add('glow');
   await sleep(1200*K);
@@ -345,6 +356,7 @@ function tick(){
   $('s').textContent = Math.floor(diff/1e3%60);
 }
 setInterval(tick, 100); tick();
+document.addEventListener('visibilitychange', tick);
 </script>
 </body>
 </html>
