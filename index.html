@@ -103,7 +103,7 @@ inset:0;
 z-index:6;
 background:rgba(6,0,14,.68);
 opacity:0;
-transition:opacity:1s ease;
+transition:opacity 1s ease;
 pointer-events:none;
 }
 #dim.on{
@@ -115,7 +115,7 @@ inset:0;
 z-index:7;
 pointer-events:none;
 opacity:0;
-transition:opacity:1s ease;
+transition:opacity 1s ease;
 mix-blend-mode:screen;
 }
 #eyes.on{
@@ -233,6 +233,71 @@ margin-top:20px;
 font-size:.9rem;
 opacity:.7;
 }
+.intro{
+min-height:190px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+.introText{
+font-family:'Dancing Script',cursive;
+font-size:2.4rem;
+color:var(--cream);
+opacity:0;
+transform:scale(.75);
+text-shadow:0 0 30px rgba(255,209,102,.4);
+}
+.introText.show{
+animation:introIn 1.4s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.introText.gold{
+color:var(--gold);
+}
+@keyframes introIn{
+0%{
+opacity:0;
+transform:scale(.75) translateY(20px);
+}
+60%{
+opacity:1;
+transform:scale(1.08) translateY(0);
+}
+100%{
+opacity:1;
+transform:scale(1);
+}
+}
+.mainTitle{
+opacity:0;
+transform:scale(.8);
+transition:opacity:1s ease,transform:1s ease;
+}
+.mainTitle.show{
+opacity:1;
+transform:scale(1);
+}
+.divider{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+margin:8px 0 14px;
+opacity:0;
+transition:opacity:1s ease;
+}
+.divider.show{
+opacity:1;
+}
+.divider i{
+display:block;
+width:70px;
+height:1px;
+background:linear-gradient(90deg,transparent,var(--gold));
+}
+.divider i:last-child{
+background:linear-gradient(90deg,var(--gold),transparent);
+}
 .greeting{
 font-family:'Playfair Display',serif;
 font-style:italic;
@@ -295,7 +360,7 @@ font-family:'Playfair Display',serif;
 font-style:italic;
 font-size:1.2rem;
 color:var(--gold);
-margin-bottom:6px;
+margin-bottom:8px;
 }
 #cake{
 background:none;
@@ -377,6 +442,20 @@ transform:translate(0,0) scale(.6);
 100%{
 opacity:0;
 transform:translate(14px,-90px) scale(3);
+}
+}
+.cakeHint{
+font-family:'Dancing Script',cursive;
+font-size:1.35rem;
+color:var(--cream);
+margin-top:2px;
+opacity:.9;
+animation:hintPulse 1.8s ease-in-out infinite;
+}
+@keyframes hintPulse{
+50%{
+opacity:.45;
+transform:translateY(3px);
 }
 }
 .wishmsg{
@@ -532,6 +611,9 @@ padding:36px 18px 30px;
 h1{
 font-size:1.6rem;
 }
+.introText{
+font-size:2rem;
+}
 .poem{
 font-size:1.28rem;
 }
@@ -592,8 +674,12 @@ padding:12px 10px;
 <p class="lockmsg">Geri sayım bitən anda hədiyyə özü açılacaq 🔒</p>
 </div>
 <div id="celeb">
-<h1>AD GÜNÜN MÜBARƏK! 🌸</h1>
-<div class="divider">
+<div class="intro" id="intro">
+<div class="introText" id="intro1">Salihə...</div>
+<div class="introText gold" id="intro2">Bu gün sənin günündür.</div>
+</div>
+<h1 class="mainTitle" id="mainTitle">AD GÜNÜN MÜBARƏK! 🌸</h1>
+<div class="divider" id="divider">
 <i></i>
 <span>🌸</span>
 <i></i>
@@ -659,6 +745,7 @@ səninlə olması diləyi ilə 🎊
 <span class="smoke"></span>
 <span class="smoke"></span>
 </button>
+<p class="cakeHint">Şama toxun ✨</p>
 <p class="wishmsg" id="wishmsg"></p>
 </div>
 <button class="btn rv" id="secretBtn" style="display:none">
@@ -688,7 +775,7 @@ const params=new URLSearchParams(window.location.search);
 const IS_DEMO=params.has('demo');
 const IS_OPEN=params.has('open');
 const NORMAL_TARGET=Date.parse('2026-09-28T00:00:00+04:00');
-const EFFECT_WPM=55;
+const EFFECT_WPM=100;
 const POEM_WPM=400;
 const MUSIC_FILE='music.mp3';
 let targetTime=NORMAL_TARGET;
@@ -932,14 +1019,23 @@ $('card').classList.add('glow');
 $('music').style.display='block';
 startLastFiveEffects();
 playMusic();
-await sleep(300);
-$('greet').style.opacity='1';
-await sleep(250);
-const title=$('celeb').querySelector('h1');
-title.style.textShadow='0 0 35px rgba(255,209,102,.55)';
+await sleep(400);
+$('intro1').classList.add('show');
+burst(W/2,H*.32,45,4);
+await sleep(1700);
+$('intro1').classList.remove('show');
+await sleep(350);
+$('intro2').classList.add('show');
+fireworks(3);
+await sleep(1900);
+$('intro').style.display='none';
+$('mainTitle').classList.add('show');
+$('divider').classList.add('show');
 burst(W/2,H*.3,70,5);
 fireworks(5);
-await sleep(450);
+await sleep(900);
+$('greet').style.opacity='1';
+await sleep(300);
 await playPoem();
 }
 async function playPoem(){
@@ -981,6 +1077,7 @@ $('secretBtn').classList.add('in');
 $('cake').addEventListener('click',()=>{
 if($('cake').classList.contains('out'))return;
 $('cake').classList.add('out');
+$('cakeHint').textContent='';
 const rect=$('cake').getBoundingClientRect();
 confetti(
 rect.left+rect.width/2,
