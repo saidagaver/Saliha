@@ -49,7 +49,7 @@ h1{font-family:'Playfair Display',serif;font-size:2.05rem;margin-bottom:8px;back
 .greeting{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;margin:14px 0 8px;color:var(--cream);opacity:0;transition:opacity 1.4s}
 .name{font-family:'Dancing Script',cursive;font-weight:700;font-style:normal;font-size:1.7rem;color:var(--gold)}
 .poem{font-family:'Dancing Script',cursive;font-size:1.45rem;line-height:1.6;margin:8px 0 16px}
-.pl{display:block;min-height:1.6em;transition:color 1.6s,text-shadow 1.6s;visibility:hidden}
+.pl{display:block;min-height:1.6em;transition:color 2.5s,text-shadow 2.5s;visibility:hidden}
 .pl.eyeline{color:#fff3d0;text-shadow:0 0 18px rgba(255,209,102,.85),0 0 40px rgba(255,143,179,.5)}
 .cur{display:inline-block;width:2px;height:1em;background:var(--gold);vertical-align:-.12em;margin-left:1px;animation:blink .7s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -189,7 +189,7 @@ const MUSIC_SRC = 'music.mp3';  // eyni qovluqda olmalıdır
 const $ = id => document.getElementById(id);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const K = RM ? .25 : 1;
+const K = RM ? 1 : 1;
 const MOB = innerWidth < 600;
 let started = false, lastSec = null;
 
@@ -242,21 +242,21 @@ async function start(){
   $('card').classList.add('hide');
   document.querySelector('.bP').style.opacity = 0;      // gecə
   $('cine').style.display = 'flex';
-  await sleep(850*K);
+  await sleep(1200*K);
   show('c1');                                            // Salihə...
-  await sleep(2400*K); show('c1', false);
-  await sleep(750*K);
+  await sleep(4000*K); show('c1', false);
+  await sleep(1200*K);
   show('cg'); show('c2'); $('rays').classList.add('on'); // işıq
-  await sleep(2300*K); show('c2', false);
-  await sleep(600*K);
+  await sleep(4000*K); show('c2', false);
+  await sleep(1500*K);
   show('c3'); confetti(W/2, H*.6);                       // AD GÜNÜN MÜBARƏK!
-  await sleep(2000*K);
+  await sleep(4000*K);
   $('cine').classList.add('off');                        // kartın içinə keçid
   document.querySelector('.bP').style.opacity = 1;       // gecə → çəhrayı/bənövşəyi
   $('card').classList.remove('hide'); petalsOn = true;
   $('music').style.display = 'block';
   setTimeout(() => $('cine').style.display = 'none', 2200);
-  await sleep(1650*K);
+  await sleep(2500*K);
   poem();
 }
 
@@ -271,14 +271,14 @@ async function typeLine(el, txt, sp){
     const ch = a[i-1];
     const jitter = Math.random()*70 - 20;                 // əl ilə yazma hissi üçün təbii dalğalanma
     const pausePunct = /[,]/.test(ch) ? 420 : /[.!]/.test(ch) ? 620 : /\s/.test(ch) ? 90 : 0;
-    await sleep(RM ? 4 : Math.max(60, sp + jitter + pausePunct));
+    await sleep(RM ? 4 : Math.max(110, sp + jitter + pausePunct));
   }
   el.innerHTML = ''; el.append(txt);
 }
 const follow = el => el.scrollIntoView({block: 'center', behavior: RM ? 'auto' : 'smooth'});
 async function poem(){
   $('greet').style.opacity = 1;
-  await sleep(1750*K);
+  await sleep(3000*K);
   const L = [...document.querySelectorAll('#poem .pl')];
   const T = L.map(l => l.textContent);
   L.forEach(l => { l.style.visibility = 'hidden'; }); // yer qalır, mətn görünmür
@@ -289,20 +289,21 @@ async function poem(){
       $('dim').classList.add('on'); $('eyes').classList.add('on');
       document.body.classList.add('eye'); eyeMode = true;
       $('card').classList.remove('glow');
-      await sleep(3300*K);
+      await sleep(4000*K);
     }
     L[i].style.visibility = 'visible';
+    L[i].innerHTML = '';
     if(eye) L[i].classList.add('eyeline');
     follow(L[i]);
-    await typeLine(L[i], T[i], eye ? 190 : 150);
-    await sleep(EY >= 0 && i === EY + 1 ? 2700*K : 620*K);
+    await typeLine(L[i], T[i], eye ? 230 : 180);
+    await sleep(EY >= 0 && i === EY + 1 ? 4000*K : 3500*K);
   }
   $('dim').classList.remove('on'); $('eyes').classList.remove('on');
   document.body.classList.remove('eye'); eyeMode = false;
   setTimeout(() => L.forEach(l => l.classList.remove('eyeline')), 2000);
   document.querySelector('.bG').style.opacity = 1;       // isti qızılı parıltı
   $('card').classList.add('glow');
-  await sleep(1650*K);
+  await sleep(2500*K);
   $('closing').classList.add('in');
   await sleep(700*K);
   $('flowers').classList.add('in');
