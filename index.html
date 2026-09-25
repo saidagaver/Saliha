@@ -1110,7 +1110,7 @@ confetti(W/2,H*.65,180);
 fireworks(8);
 await sleep(2200);
 title.classList.add('cineOut');
-await sleep(1100);
+await sleep(500);
 cinematic.classList.remove('on');
 text.style.display='';
 text.textContent='';
@@ -1131,7 +1131,6 @@ startLastFiveEffects();
 playMusic();
 await cinematicOpening();
 $('greet').style.opacity='1';
-await sleep(400);
 await playPoem();
 }
 async function playPoem(){
