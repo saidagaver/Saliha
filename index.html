@@ -99,6 +99,42 @@ h1{font-family:'Playfair Display',serif;font-size:2.05rem;margin-bottom:8px;back
 #c3{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,8.5vw,3.2rem);background:linear-gradient(90deg,var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
 @media(max-width:480px){.card{padding:36px 18px 30px}h1{font-size:1.6rem}.poem{font-size:1.28rem}.card2 p.m{font-size:1.45rem}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.3s!important}.rays{display:none}}
+
+.burst-particle{
+  position:fixed;
+  left:50%;
+  top:50%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.95);
+  pointer-events:none;
+  z-index:9999;
+  box-shadow:0 0 14px rgba(255,255,255,.9);
+  animation:burstFly 900ms cubic-bezier(.15,.75,.25,1) forwards;
+}
+@keyframes burstFly{
+  from{transform:translate(-50%,-50%) scale(.2);opacity:1}
+  to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0);opacity:0}
+}
+.burst-ring{
+  position:fixed;
+  left:50%;
+  top:50%;
+  width:20px;
+  height:20px;
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+  transform:translate(-50%,-50%) scale(.2);
+  animation:burstRing 700ms ease-out forwards;
+}
+@keyframes burstRing{
+  0%{opacity:1;transform:translate(-50%,-50%) scale(.2)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(8)}
+}
+
 </style>
 </head>
 <body>
@@ -296,32 +332,53 @@ async function start(){
 }
 
 /* ===== Şeir: əl yazısı / yazı makinası effekti ===== */
-async function typeLine(el, txt, sp){
-  const chars = Array.from(txt);
 
-  for(let i = 1; i <= chars.length; i++){
+function burstTextEffect(){
+  const ring = document.createElement('div');
+  ring.className = 'burst-ring';
+  document.body.append(ring);
+
+  for(let i=0;i<42;i++){
+    const p = document.createElement('span');
+    p.className = 'burst-particle';
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 90 + Math.random() * 240;
+    p.style.setProperty('--dx', `${Math.cos(angle)*distance}px`);
+    p.style.setProperty('--dy', `${Math.sin(angle)*distance}px`);
+    p.style.animationDelay = `${Math.random()*90}ms`;
+    document.body.append(p);
+    setTimeout(()=>p.remove(),1100);
+  }
+  setTimeout(()=>ring.remove(),800);
+  return sleep(650);
+}
+
+async function typeLine(el, txt, wpm=45){
+    const chars = [...txt];
+    const msPerChar = 60000 / (wpm * 5);
     el.innerHTML = '';
-    el.append(document.createTextNode(chars.slice(0,i).join('')));
+    for(let i = 0; i < chars.length; i++){
+      el.innerHTML = '';
+      el.append(document.createTextNode(chars.slice(0, i + 1).join('')));
+      const c = document.createElement('i');
+      c.className = 'cur';
+      el.append(c);
 
-    const c = document.createElement('i');
-    c.className = 'cur';
-    el.append(c);
+      const rest = document.createElement('span');
+      rest.style.visibility = 'hidden';
+      rest.textContent = chars.slice(i + 1).join('');
+      el.append(rest);
 
-    const h = document.createElement('span');
-    h.style.visibility = 'hidden';
-    h.textContent = chars.slice(i).join('');
-    el.append(h);
+      const ch = chars[i];
+      let pause = msPerChar;
+      if(/[,;:]/.test(ch)) pause += 90;
+      if(/[.!?…]/.test(ch)) pause += 160;
+      if(/\s/.test(ch)) pause += 20;
 
-    const ch = chars[i-1];
-
-    /* Həqiqətən yavaş, əl ilə yazılırmış kimi effekt. */
-    const jitter = Math.random()*80 - 25;
-    const pausePunct =
-      /[,;:]/.test(ch) ? 500 :
-      /[.!?]/.test(ch) ? 850 :
-      /\s/.test(ch) ? 130 : 0;
-
-    await sleep(Math.max(180, sp + jitter + pausePunct));
+      await sleep(pause);
+    }
+    el.innerHTML = '';
+    el.append(document.createTextNode(txt));
   }
 
   el.innerHTML = '';
