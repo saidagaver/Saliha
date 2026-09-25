@@ -2,7 +2,7 @@
 <html lang="az">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ad Günün Mübarək, Salihə! 🌸</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,45 +10,49 @@
 <style>
 :root{--pink:#ff8fb3;--gold:#ffd166;--cream:#fff6f0;--purple:#a370f7}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{background:#10031b;overflow-x:hidden}
-body{min-height:100vh;min-height:100dvh;font-family:'Poppins',sans-serif;color:#fff;text-align:center;display:flex;align-items:center;justify-content:center;padding:20px 16px 30px;overflow-x:hidden;background:#10031b}
+html{background:#12041f;overflow-x:clip}
+body{min-height:100vh;min-height:100dvh;font-family:'Poppins',system-ui,sans-serif;color:#fff;text-align:center;display:flex;padding:max(20px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom));overflow-x:hidden;background:#12041f}
 .bg,.bg div{position:fixed;inset:0;pointer-events:none}
 .bg{z-index:0}
 .bN{background:radial-gradient(circle at 50% 30%,#2a0842,#0d0318 75%)}
-.bP{background:radial-gradient(circle at 20% 15%,#5b1a7a,transparent 45%),radial-gradient(circle at 85% 80%,#932e6e,transparent 50%),linear-gradient(135deg,#3a0d5c,#7b2a8c 55%,#c96ea0);opacity:0;transition:opacity:5s ease}
-.bG{background:radial-gradient(ellipse at 50% 0%,rgba(255,209,102,.5),transparent 60%),radial-gradient(ellipse at 50% 100%,rgba(255,143,179,.25),transparent 60%);opacity:0;transition:opacity:6s ease}
-.rays{position:fixed;left:50%;top:-30vmax;width:160vmax;height:160vmax;margin-left:-80vmax;pointer-events:none;z-index:1;opacity:0;transition:opacity:3s;background:repeating-conic-gradient(from 0deg,rgba(255,220,160,.09) 0 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000,transparent 55%);mask:radial-gradient(circle,#000,transparent 55%);animation:spin 90s linear infinite}
+.bP{background:radial-gradient(circle at 20% 15%,#5b1a7a,transparent 45%),radial-gradient(circle at 85% 80%,#932e6e,transparent 50%),linear-gradient(135deg,#3a0d5c,#7b2a8c 55%,#c96ea0);transition:opacity 5s ease}
+.bG{background:radial-gradient(ellipse at 50% 0%,rgba(255,209,102,.5),transparent 60%),radial-gradient(ellipse at 50% 100%,rgba(255,143,179,.25),transparent 60%);opacity:0;transition:opacity 6s ease}
+.rays{position:fixed;left:50%;top:-30vmax;width:160vmax;height:160vmax;margin-left:-80vmax;pointer-events:none;z-index:0;opacity:0;transition:opacity 3s;background:repeating-conic-gradient(from 0deg,rgba(255,220,160,.09) 0 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000,transparent 55%);mask:radial-gradient(circle,#000,transparent 55%);animation:spin 90s linear infinite}
 .rays.on{opacity:1}
 @keyframes spin{to{transform:rotate(360deg)}}
-#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
-#dim{position:fixed;inset:0;z-index:6;background:rgba(6,0,14,.68);opacity:0;transition:opacity 1.5s ease;pointer-events:none}
-#eyes{position:fixed;inset:0;z-index:7;pointer-events:none;opacity:0;transition:opacity 1.5s ease;mix-blend-mode:screen}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#dim{position:fixed;inset:0;z-index:1;background:rgba(6,0,14,.62);opacity:0;transition:opacity 1.6s ease;pointer-events:none}
+#eyes{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity 1.8s ease;mix-blend-mode:screen}
 #eyes i{position:absolute;top:24%;width:min(30vw,150px);height:min(15vw,72px);border-radius:50%;background:radial-gradient(ellipse,rgba(255,240,200,.95) 0 8%,rgba(255,209,102,.6) 20%,rgba(255,143,179,.25) 50%,transparent 72%);filter:blur(5px);animation:breathe 3s ease-in-out infinite}
-#eyes i:first-child{left:calc(50% - min(30vw,150px) - 8px)}
-#eyes i:last-child{right:calc(50% - min(30vw,150px) - 8px);animation-delay:.3s}
-@keyframes breathe{50%{transform:scale(1.15);filter:blur(9px)}}
+#eyes i:first-child{left:calc(50% - min(30vw,150px) - 8px)}#eyes i:last-child{right:calc(50% - min(30vw,150px) - 8px);animation-delay:.3s}
+@keyframes breathe{50%{transform:scale(1.12);filter:blur(8px)}}
 #dim.on,#eyes.on{opacity:1}
-.card{position:relative;z-index:3;width:100%;max-width:560px;padding:44px 26px 38px;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,rgba(46,14,74,.72),rgba(88,26,86,.66));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);box-shadow:0 25px 70px rgba(0,0,0,.45);transition:opacity 1.4s ease,transform 1.4s ease}
-.card.hide{opacity:0;transform:translateY(25px) scale(.96);pointer-events:none}
-.card.glow{box-shadow:0 25px 70px rgba(0,0,0,.45),0 0 80px rgba(255,209,102,.25)}
+.card{position:relative;z-index:2;margin:auto;width:100%;max-width:560px;padding:44px 26px 38px;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,rgba(46,14,74,.62),rgba(88,26,86,.6));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);box-shadow:0 25px 70px rgba(0,0,0,.45);transition:opacity 1.6s ease,transform 1.6s ease}
+.card.hide{opacity:0;transform:translateY(24px) scale(.96);pointer-events:none}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(8,0,16,.45);opacity:0;transition:opacity 1.6s ease;pointer-events:none}
+body.eye .card::before{opacity:1}
+.card.glow{box-shadow:0 25px 70px rgba(0,0,0,.45),0 0 60px rgba(255,209,102,.22)}
+.corner{position:absolute;width:76px;height:76px;pointer-events:none;opacity:.9}
+.tl{top:-4px;left:-4px}.tr{top:-4px;right:-4px;transform:scaleX(-1)}.bl{bottom:-4px;left:-4px;transform:scaleY(-1)}.br{bottom:-4px;right:-4px;transform:scale(-1)}
 h1{font-family:'Playfair Display',serif;font-size:2.05rem;margin-bottom:8px;background:linear-gradient(90deg,var(--gold),var(--pink) 60%,var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{opacity:.85;font-weight:300;margin-bottom:22px}
 .seal{font-size:2.8rem;animation:bob 3s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-8px) rotate(4deg)}}
 .timer{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:20px 0 14px}
-.tb{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:14px 16px;min-width:72px;transition:transform .25s,background .25s}
-.tb.tick{transform:translateY(-4px);background:rgba(255,209,102,.22)}
+.tb{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:14px 16px;min-width:72px}
 .num{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold)}
 .lbl{font-size:.7rem;opacity:.8;text-transform:uppercase;letter-spacing:1.5px}
 .lockmsg{margin-top:20px;font-size:.9rem;opacity:.7}
 #celeb{display:none}
 .divider{display:flex;justify-content:center;align-items:center;gap:10px;margin:12px 0}
 .divider i{height:1px;width:56px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.greeting{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;margin:14px 0 8px;color:var(--cream);opacity:0;transition:opacity 1.4s ease}
+.greeting{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;margin:14px 0 8px;color:var(--cream);opacity:0;transition:opacity 1.4s}
 .name{font-family:'Dancing Script',cursive;font-weight:700;font-style:normal;font-size:1.7rem;color:var(--gold)}
 .poem{font-family:'Dancing Script',cursive;font-size:1.45rem;line-height:1.6;margin:8px 0 16px}
-.pl{display:block;min-height:1.6em;visibility:hidden;transition:color 1.5s,text-shadow 1.5s}
+.pl{display:block;min-height:1.6em;transition:color 1.6s,text-shadow 1.6s;visibility:hidden}
 .pl.eyeline{color:#fff3d0;text-shadow:0 0 18px rgba(255,209,102,.85),0 0 40px rgba(255,143,179,.5)}
+.cur{display:inline-block;width:2px;height:1em;background:var(--gold);vertical-align:-.12em;margin-left:1px;animation:blink .7s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
 .rv{opacity:0;transform:translateY(14px);transition:opacity 1.4s ease,transform 1.4s ease}
 .rv.in{opacity:1;transform:none}
 .closing{line-height:1.6;margin-top:14px}
@@ -59,464 +63,319 @@ h1{font-family:'Playfair Display',serif;font-size:2.05rem;margin-bottom:8px;back
 #cake svg{width:min(62vw,240px);height:auto;filter:drop-shadow(0 10px 24px rgba(255,143,179,.3));transition:transform .3s}
 #cake:active svg{transform:scale(.96)}
 .fl{transform-origin:center bottom;transform-box:fill-box;animation:flick .5s ease-in-out infinite alternate;transition:opacity .4s}
-.fl:nth-of-type(3){animation-delay:.15s}
-.fl:nth-of-type(4){animation-delay:.3s}
+.fl:nth-of-type(3){animation-delay:.15s}.fl:nth-of-type(4){animation-delay:.3s}
 @keyframes flick{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.12) rotate(3deg)}}
 .out .fl{opacity:0}
-.gl{transition:opacity .6s}
-.out .gl{opacity:0}
+.gl{transition:opacity .6s}.out .gl{opacity:0}
 .smoke{position:absolute;top:14%;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.4);filter:blur(5px);opacity:0}
 .out .smoke{animation:rise 2.6s ease-out forwards}
-.smoke:nth-of-type(1){left:31%}
-.smoke:nth-of-type(2){left:49%;animation-delay:.2s!important}
-.smoke:nth-of-type(3){left:67%;animation-delay:.4s!important}
+.smoke:nth-of-type(1){left:31%}.smoke:nth-of-type(2){left:49%;animation-delay:.2s!important}.smoke:nth-of-type(3){left:67%;animation-delay:.4s!important}
 @keyframes rise{0%{opacity:.8;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(14px,-90px) scale(3)}}
 .wishmsg{font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--cream);margin-top:10px;min-height:2em;text-shadow:0 0 20px rgba(255,209,102,.6)}
 .btn{font:inherit;font-size:.9rem;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,209,102,.5);border-radius:99px;padding:12px 22px;cursor:pointer;min-height:44px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s,box-shadow .3s}
 .btn:hover{background:rgba(255,209,102,.18);box-shadow:0 0 22px rgba(255,209,102,.3)}
-#secretBtn{margin-top:26px;font-style:italic;letter-spacing:.5px}
-#music{position:fixed;z-index:15;right:14px;bottom:14px;padding:10px 16px;font-size:.82rem;display:none}
-#secret{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(10,2,20,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity 1s}
+#secretBtn{margin-top:26px;font-style:italic;letter-spacing:.5px;transition:opacity 1.4s ease,transform 1.4s ease,background .3s,box-shadow .3s}
+#music{position:fixed;z-index:6;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));padding:10px 16px;font-size:.82rem;display:none}
+#secret{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) 20px max(20px,env(safe-area-inset-bottom));background:rgba(10,2,20,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);perspective:1200px;opacity:0;transition:opacity 1s}
 #secret.on{opacity:1}
-.card2{max-width:440px;width:100%;padding:44px 28px 30px;border-radius:26px;background:linear-gradient(160deg,rgba(60,18,90,.94),rgba(120,36,100,.88));border:1px solid rgba(255,209,102,.45);box-shadow:0 0 70px rgba(255,143,179,.3);transform:scale(.8) rotateY(-20deg);transition:transform 1.2s ease}
-#secret.on .card2{transform:scale(1) rotateY(0)}
+.card2{max-width:440px;width:100%;max-height:100%;overflow-y:auto;padding:44px 28px 30px;border-radius:26px;background:linear-gradient(160deg,rgba(60,18,90,.9),rgba(120,36,100,.85));border:1px solid rgba(255,209,102,.45);box-shadow:0 0 70px rgba(255,143,179,.3);transform:rotateY(-100deg);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+#secret.on .card2{transform:none}
 .card2 .tag{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.85;margin-bottom:18px}
 .card2 p.m{font-family:'Dancing Script',cursive;font-size:1.65rem;line-height:1.55;color:var(--cream)}
 .card2 .btn{margin-top:26px}
-#final{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle,rgba(58,13,92,.96),rgba(15,3,26,.99))}
-#final .big{font-family:'Playfair Display',serif;font-size:min(48vw,250px);line-height:1;background:linear-gradient(180deg,var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 50px rgba(255,209,102,.35);animation:beat 1s ease-out}
-@keyframes beat{0%{transform:scale(2.3);opacity:0}25%{opacity:1}100%{transform:scale(1)}}
+#final{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle,rgba(58,13,92,.92),rgba(15,3,26,.97))}
+#final .big{font-family:'Playfair Display',serif;font-size:min(42vw,220px);line-height:1;background:linear-gradient(180deg,var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;animation:beat 1s ease-out}
+@keyframes beat{0%{transform:scale(2.2);opacity:0}25%{opacity:1}100%{transform:scale(1)}}
 #final .ring{position:absolute;width:min(70vw,380px);height:min(70vw,380px);border-radius:50%;border:2px solid var(--gold);animation:ring 1s ease-out infinite}
 @keyframes ring{from{transform:scale(.4);opacity:.9}to{transform:scale(1.5);opacity:0}}
 #final p{position:absolute;bottom:14%;font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--cream)}
-#cine{position:fixed;inset:0;z-index:12;background:#05000c;display:none;align-items:center;justify-content:center;transition:opacity 1.4s ease}
+#cine{position:fixed;inset:0;z-index:12;background:#05000c;display:none;align-items:center;justify-content:center;transition:opacity 1.6s ease}
 #cine.off{opacity:0;pointer-events:none}
-#cine .glow{position:absolute;width:120vmin;height:120vmin;border-radius:50%;background:radial-gradient(circle,rgba(255,209,102,.4),rgba(255,143,179,.16) 40%,transparent 68%);opacity:0;transition:opacity 2s}
+#cine .glow{position:absolute;width:120vmin;height:120vmin;border-radius:50%;background:radial-gradient(circle,rgba(255,209,102,.35),rgba(255,143,179,.15) 40%,transparent 68%);opacity:0;transition:opacity 2s}
 #cine .glow.on{opacity:1}
-.ct{position:absolute;padding:0 20px;opacity:0;filter:blur(12px);transform:scale(1.08);transition:opacity 1.2s ease,filter 1.2s ease,transform 1.6s ease}
+.ct{position:absolute;padding:0 20px;opacity:0;filter:blur(12px);transform:scale(1.06);transition:opacity 1.3s ease,filter 1.3s ease,transform 1.8s ease}
 .ct.on{opacity:1;filter:none;transform:none}
 #c1{font-family:'Dancing Script',cursive;font-size:clamp(3rem,15vw,5.5rem);color:var(--gold)}
 #c2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.4rem,6vw,2.2rem);color:var(--cream)}
 #c3{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,8.5vw,3.2rem);background:linear-gradient(90deg,var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
-.caret{display:inline-block;width:2px;height:.9em;background:var(--gold);margin-left:3px;vertical-align:-.05em;animation:blink .7s infinite}
-@keyframes blink{50%{opacity:0}}
-@media(max-width:480px){.card{padding:36px 18px 30px}h1{font-size:1.6rem}.poem{font-size:1.28rem}.card2 p.m{font-size:1.45rem}.timer{gap:7px}.tb{min-width:68px;padding:12px 10px}}
+@media(max-width:480px){.card{padding:36px 18px 30px}h1{font-size:1.6rem}.poem{font-size:1.28rem}.card2 p.m{font-size:1.45rem}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.3s!important}.rays{display:none}}
 </style>
 </head>
 <body>
-<div class="bg">
-<div class="bN"></div>
-<div class="bP"></div>
-<div class="bG"></div>
-</div>
+<div class="bg"><div class="bN"></div><div class="bP"></div><div class="bG"></div></div>
 <div class="rays" id="rays"></div>
 <canvas id="fx"></canvas>
 <div id="dim"></div>
-<div id="eyes">
-<i></i>
-<i></i>
-</div>
-<div id="final">
-<div class="ring"></div>
-<div class="big" id="bigNum">5</div>
-<p>Sürpriz açılır... ✨</p>
-</div>
-<div id="cine">
-<div class="glow" id="cg"></div>
-<div class="ct" id="c1"></div>
-<div class="ct" id="c2"></div>
-<div class="ct" id="c3"></div>
-</div>
+<div id="eyes"><i></i><i></i></div>
+<svg width="0" height="0" style="position:absolute"><symbol id="cn" viewBox="0 0 100 100"><path d="M4 60Q4 4 60 4" fill="none" stroke="#ffd166" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="10" r="5" fill="#ff8fb3"/><circle cx="19" cy="13" r="4" fill="#ffd166"/><circle cx="13" cy="20" r="4" fill="#a370f7"/></symbol></svg>
+
+<div id="final"><div class="ring"></div><div class="big" id="bigNum">5</div><p>Sürpriz açılır... ✨</p></div>
+<div id="cine"><div class="glow" id="cg"></div><div class="ct" id="c1">Salihə...</div><div class="ct" id="c2">Bu gün sənin günündür.</div><div class="ct" id="c3">AD GÜNÜN MÜBARƏK!</div></div>
+
 <div class="card" id="card">
-<div id="wait">
-<div class="seal">🔐🌷</div>
-<h1>Bir sirr var...</h1>
-<p class="sub">Bu səhifə <strong>28 sentyabr 00:00</strong>-da özü açılacaq. Səbrlə gözlə 😉</p>
-<div class="timer">
-<div class="tb" id="boxD"><div class="num" id="d">00</div><div class="lbl">gün</div></div>
-<div class="tb" id="boxH"><div class="num" id="h">00</div><div class="lbl">saat</div></div>
-<div class="tb" id="boxM"><div class="num" id="m">00</div><div class="lbl">dəqiqə</div></div>
-<div class="tb" id="boxS"><div class="num" id="s">00</div><div class="lbl">saniyə</div></div>
+  <svg class="corner tl"><use href="#cn"/></svg><svg class="corner tr"><use href="#cn"/></svg><svg class="corner bl"><use href="#cn"/></svg><svg class="corner br"><use href="#cn"/></svg>
+  <div id="wait">
+    <div class="seal">🔐🌷</div>
+    <h1>Bir sirr var...</h1>
+    <p class="sub">Bu səhifə <strong>ad günündə</strong> özü açılacaq. Səbrlə gözlə 😉</p>
+    <div class="timer">
+      <div class="tb"><div class="num" id="d">0</div><div class="lbl">gün</div></div>
+      <div class="tb"><div class="num" id="h">0</div><div class="lbl">saat</div></div>
+      <div class="tb"><div class="num" id="m">0</div><div class="lbl">dəqiqə</div></div>
+      <div class="tb"><div class="num" id="s">0</div><div class="lbl">saniyə</div></div>
+    </div>
+    <p class="lockmsg">Geri sayım bitən anda hədiyyə özü açılacaq 🔒</p>
+  </div>
+
+  <div id="celeb">
+    <h1>AD GÜNÜN MÜBARƏK!</h1>
+    <div class="divider"><i></i><span>🌸</span><i></i></div>
+    <p class="greeting" id="greet">Dostum <span class="name">Salihə</span>,</p>
+    <p class="poem" id="poem">
+      <span class="pl">Bu gün sənin ad günündü,</span>
+      <span class="pl">bir şair olaraq bunu şeirlə təbrik etmək istəyirəm ✨</span>
+      <span class="pl">Soruşma hansı rəng yaraşar mənə,</span>
+      <span class="pl">bütün rənglər yaranıb sənə görə.</span>
+      <span class="pl">Dünyanı yaradan al-əlvan rənglər,</span>
+      <span class="pl">təbiətə yaraşmadı sənin qədər. 💖</span>
+      <span class="pl">Günəş işığında parlayan üzün,</span>
+      <span class="pl">dinləyənə ürək verən sözün,</span>
+      <span class="pl">göy gözlər qəşəngdi deyənlər,</span>
+      <span class="pl">görməyib axı sənin gözün.</span>
+    </p>
+    <p class="closing rv" id="closing">Ad gününü təbrik edirəm, istədiyin gələcəyin<br>səninlə olması diləyi ilə 🎊</p>
+    <div class="flowers rv" id="flowers">🌸 🌷 🌼 🌺 🌸</div>
+    <div class="wishbox rv" id="wishbox">
+      <p class="wish">Bir dilək tut... ✨</p>
+      <button id="cake" aria-label="Şamları söndür">
+        <svg viewBox="0 0 240 230" aria-hidden="true">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd6e4"/><stop offset="1" stop-color="#ff8fb3"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d9ff"/><stop offset="1" stop-color="#a370f7"/></linearGradient><radialGradient id="fg"><stop offset="0" stop-color="#fff6c8"/><stop offset="1" stop-color="#ffb347"/></radialGradient></defs>
+          <ellipse cx="120" cy="214" rx="105" ry="10" fill="#000" opacity=".25"/>
+          <rect x="30" y="140" width="180" height="70" rx="12" fill="url(#g2)"/>
+          <rect x="52" y="96" width="136" height="50" rx="11" fill="url(#g1)"/>
+          <path d="M52 108q17 14 34 0t34 0 34 0 34 0" fill="none" stroke="#fff" stroke-width="5" opacity=".7" stroke-linecap="round"/>
+          <path d="M30 152q15 14 30 0t30 0 30 0 30 0 30 0 30 0" fill="none" stroke="#fff" stroke-width="5" opacity=".6" stroke-linecap="round"/>
+          <g fill="#ffd166"><rect x="86" y="62" width="8" height="36" rx="3"/><rect x="116" y="58" width="8" height="40" rx="3"/><rect x="146" y="62" width="8" height="36" rx="3"/></g>
+          <circle class="gl" cx="90" cy="48" r="20" fill="#ffd166" opacity=".25"/><circle class="gl" cx="120" cy="44" r="20" fill="#ffd166" opacity=".25"/><circle class="gl" cx="150" cy="48" r="20" fill="#ffd166" opacity=".25"/>
+          <ellipse class="fl" cx="90" cy="50" rx="6" ry="11" fill="url(#fg)"/><ellipse class="fl" cx="120" cy="46" rx="6" ry="11" fill="url(#fg)"/><ellipse class="fl" cx="150" cy="50" rx="6" ry="11" fill="url(#fg)"/>
+        </svg>
+        <span class="smoke"></span><span class="smoke"></span><span class="smoke"></span>
+      </button>
+      <p class="wishmsg" id="wishmsg" aria-live="polite"></p>
+    </div>
+    <button class="btn rv" id="secretBtn" style="display:none">Bir şey hələ bitməyib...</button>
+  </div>
 </div>
-<p class="lockmsg">Geri sayım bitən anda hədiyyə özü açılacaq 🔒</p>
-</div>
-<div id="celeb">
-<h1>AD GÜNÜN MÜBARƏK!</h1>
-<div class="divider">
-<i></i>
-<span>🌸</span>
-<i></i>
-</div>
-<p class="greeting" id="greet">Dostum <span class="name">Salihə</span>,</p>
-<p class="poem" id="poem">
-<span class="pl" data-text="Bu gün sənin ad günündü,">Bu gün sənin ad günündü,</span>
-<span class="pl" data-text="bir şair olaraq bunu şeirlə təbrik etmək istəyirəm ✨">bir şair olaraq bunu şeirlə təbrik etmək istəyirəm ✨</span>
-<span class="pl" data-text="Soruşma hansı rəng yaraşar mənə,">Soruşma hansı rəng yaraşar mənə,</span>
-<span class="pl" data-text="bütün rənglər yaranıb sənə görə.">bütün rənglər yaranıb sənə görə.</span>
-<span class="pl" data-text="Dünyanı yaradan al-əlvan rənglər,">Dünyanı yaradan al-əlvan rənglər,</span>
-<span class="pl" data-text="təbiətə yaraşmadı sənin qədər. 💖">təbiətə yaraşmadı sənin qədər. 💖</span>
-<span class="pl" data-text="Günəş işığında parlayan üzün,">Günəş işığında parlayan üzün,</span>
-<span class="pl" data-text="dinləyənə ürək verən sözün,">dinləyənə ürək verən sözün,</span>
-<span class="pl" data-text="göy gözlər qəşəngdi deyənlər,">göy gözlər qəşəngdi deyənlər,</span>
-<span class="pl" data-text="görməyib axı sənin gözün.">görməyib axı sənin gözün.</span>
-</p>
-<p class="closing rv" id="closing">Ad gününü təbrik edirəm, istədiyin gələcəyin<br>səninlə olması diləyi ilə 🎊</p>
-<div class="flowers rv" id="flowers">🌸 🌷 🌼 🌺 🌸</div>
-<div class="wishbox rv" id="wishbox">
-<p class="wish">Bir dilək tut... ✨</p>
-<button id="cake" aria-label="Şamları söndür">
-<svg viewBox="0 0 240 230" aria-hidden="true">
-<defs>
-<linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#ffd6e4"/>
-<stop offset="1" stop-color="#ff8fb3"/>
-</linearGradient>
-<linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#f3d9ff"/>
-<stop offset="1" stop-color="#a370f7"/>
-</linearGradient>
-<radialGradient id="fg">
-<stop offset="0" stop-color="#fff6c8"/>
-<stop offset="1" stop-color="#ffb347"/>
-</radialGradient>
-</defs>
-<ellipse cx="120" cy="214" rx="105" ry="10" fill="#000" opacity=".25"/>
-<rect x="30" y="140" width="180" height="70" rx="12" fill="url(#g2)"/>
-<rect x="52" y="96" width="136" height="50" rx="11" fill="url(#g1)"/>
-<path d="M52 108q17 14 34 0t34 0 34 0 34 0" fill="none" stroke="#fff" stroke-width="5" opacity=".7" stroke-linecap="round"/>
-<path d="M30 152q15 14 30 0t30 0 30 0 30 0 30 0 30 0" fill="none" stroke="#fff" stroke-width="5" opacity=".6" stroke-linecap="round"/>
-<g fill="#ffd166">
-<rect x="86" y="62" width="8" height="36" rx="3"/>
-<rect x="116" y="58" width="8" height="40" rx="3"/>
-<rect x="146" y="62" width="8" height="36" rx="3"/>
-</g>
-<circle class="gl" cx="90" cy="48" r="20" fill="#ffd166" opacity=".25"/>
-<circle class="gl" cx="120" cy="44" r="20" fill="#ffd166" opacity=".25"/>
-<circle class="gl" cx="150" cy="48" r="20" fill="#ffd166" opacity=".25"/>
-<ellipse class="fl" cx="90" cy="50" rx="6" ry="11" fill="url(#fg)"/>
-<ellipse class="fl" cx="120" cy="46" rx="6" ry="11" fill="url(#fg)"/>
-<ellipse class="fl" cx="150" cy="50" rx="6" ry="11" fill="url(#fg)"/>
-</svg>
-<span class="smoke"></span>
-<span class="smoke"></span>
-<span class="smoke"></span>
-</button>
-<p class="wishmsg" id="wishmsg"></p>
-</div>
-<button class="btn rv" id="secretBtn" style="display:none">Bir şey hələ bitməyib...</button>
-</div>
-</div>
+
 <button class="btn" id="music">♫ Musiqini aç</button>
-<div id="secret">
-<div class="card2">
-<p class="tag">✦ gizli mesaj ✦</p>
-<p class="m">Bunu sadəcə ad günün olduğu üçün hazırlamadım.<br>Sənin üzündə bir dəfə də olsa təbəssüm yaratmaq istədim. ❤️</p>
-<button class="btn" id="secretClose">Bağla</button>
+
+<div id="secret" role="dialog" aria-label="Gizli mesaj">
+  <div class="card2">
+    <p class="tag">✦ gizli mesaj ✦</p>
+    <p class="m">Bunu sadəcə ad günün olduğu üçün hazırlamadım.<br>Sənin üzündə bir dəfə də olsa təbəssüm yaratmaq istədim. ❤️</p>
+    <button class="btn" id="secretClose">Bağla</button>
+  </div>
 </div>
-</div>
+
 <script>
-const $=id=>document.getElementById(id);
-const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-const params=new URLSearchParams(window.location.search);
-const IS_DEMO=params.has('demo');
-const IS_OPEN=params.has('open');
-const NORMAL_TARGET=Date.parse('2026-09-28T00:00:00+04:00');
-const EFFECT_WPM=40;
-const POEM_WPM=50;
-const MUSIC_FILE='music.mp3';
-let targetTime=NORMAL_TARGET;
-let started=false;
-let countdownTimer=null;
-let audio=null;
-let playing=false;
-let parts=[];
-let petalsOn=false;
-let W=innerWidth;
-let H=innerHeight;
-if(IS_DEMO&&!IS_OPEN)targetTime=Date.now()+10000;
-function resize(){
-W=innerWidth;
-H=innerHeight;
-$('fx').width=W;
-$('fx').height=H;
+/* ===== AÇILIŞ VAXTI: 28 sentyabr 2026, 00:00 Bakı vaxtı (UTC+4) ===== */
+let target = new Date('2026-09-28T00:00:00+04:00').getTime();
+const Q = location.search;
+if(/demo/.test(Q)) target = Date.now() + 10000;   // test: 10 saniyəlik geri sayım
+if(/open/.test(Q)) target = 0;                     // test: dərhal açılış
+const MUSIC_SRC = 'music.mp3';  // eyni qovluqda olmalıdır
+
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const K = RM ? .25 : 1;
+const MOB = innerWidth < 600;
+let started = false, lastSec = null;
+
+/* ===== Effektlər (ulduzlar, toz zərrəcikləri, ləçəklər, konfetti) ===== */
+const cv = $('fx'), cx = cv.getContext('2d');
+let W, H, petalsOn = false, parts = [], eyeMode = false, dimF = 0;
+const rs = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
+rs(); addEventListener('resize', rs);
+const cols = ['#ff8fb3','#ff5e94','#ffd166','#c9a7f0','#ffffff','#f7c6d9'];
+const stars = Array.from({length: MOB ? 40 : 70}, () => ({x: Math.random(), y: Math.random(), r: Math.random()*1.5+.4, p: Math.random()*6}));
+const dust = Array.from({length: MOB ? 18 : 34}, () => ({x: Math.random(), y: Math.random(), r: Math.random()*2+1, v: .0002+Math.random()*.0004, p: Math.random()*6}));
+const petals = Array.from({length: MOB ? 22 : 45}, () => newPetal(true));
+function newPetal(init){ return {x: Math.random()*(W||400), y: init ? -Math.random()*(H||700) : -20, s: 7+Math.random()*7, c: cols[Math.random()*6|0], v: .7+Math.random()*1.3, sw: Math.random()*6, r: Math.random()*360, rv: Math.random()*2-1}; }
+function burst(x, y, n, spd){ for(let i=0;i<n;i++){ const a = Math.random()*6.283, v = Math.random()*spd+2; parts.push({x, y, vx: Math.cos(a)*v, vy: Math.sin(a)*v, life: 1, c: cols[Math.random()*6|0], s: 1.5+Math.random()*2.5}); } }
+function confetti(x, y){ if(RM) return; for(let i=0;i<(MOB ? 70 : 120);i++) parts.push({x, y, vx: (Math.random()-.5)*15, vy: -Math.random()*15-4, life: 1.6, c: cols[Math.random()*6|0], s: 5+Math.random()*4, g: .28, sq: 1}); }
+function fireworks(n){ if(RM) return; for(let i=0;i<n;i++) setTimeout(() => burst(W*(.15+Math.random()*.7), H*(.12+Math.random()*.35), MOB ? 40 : 60, 5.5), i*650); }
+function loop(t){
+  cx.clearRect(0,0,W,H);
+  dimF += ((eyeMode ? 1 : 0) - dimF)*.05; const f = 1 - dimF*.8;
+  cx.fillStyle = '#fff';
+  stars.forEach(s => { cx.globalAlpha = (.25 + .55*Math.abs(Math.sin(t/1000 + s.p)))*f; cx.beginPath(); cx.arc(s.x*W, s.y*H, s.r, 0, 6.3); cx.fill(); });
+  cx.fillStyle = '#ffd98a';
+  dust.forEach(d => { d.y -= d.v; if(d.y < -.02) d.y = 1.02; cx.globalAlpha = (.2 + .3*Math.abs(Math.sin(t/1800 + d.p)))*f; cx.beginPath(); cx.arc(d.x*W + Math.sin(t/2500 + d.p)*12, d.y*H, d.r, 0, 6.3); cx.fill(); });
+  cx.globalAlpha = .85*f;
+  if(petalsOn) petals.forEach(p => {
+    p.y += p.v; p.sw += .02; p.x += Math.sin(p.sw)*.6; p.r += p.rv;
+    if(p.y > H + 20) Object.assign(p, newPetal(false));
+    cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r*Math.PI/180); cx.fillStyle = p.c;
+    cx.beginPath(); cx.ellipse(0,0,p.s*.55,p.s,Math.PI/4,0,6.3); cx.fill(); cx.restore();
+  });
+  parts = parts.filter(p => p.life > 0);
+  parts.forEach(p => {
+    p.x += p.vx; p.y += p.vy; p.vy += p.g || .06; p.vx *= .985; p.life -= p.sq ? .006 : .014;
+    cx.globalAlpha = Math.max(0, Math.min(1, p.life)); cx.fillStyle = p.c;
+    if(p.sq) cx.fillRect(p.x, p.y, p.s, p.s*.6); else { cx.beginPath(); cx.arc(p.x, p.y, p.s, 0, 6.3); cx.fill(); }
+  });
+  cx.globalAlpha = 1;
+  requestAnimationFrame(loop);
 }
-resize();
-addEventListener('resize',resize);
-const ctx=$('fx').getContext('2d');
-const colors=['#ff8fb3','#ff5e94','#ffd166','#c9a7f0','#ffffff','#f7c6d9'];
-const stars=Array.from({length:75},()=>({x:Math.random(),y:Math.random(),r:.4+Math.random()*1.5,p:Math.random()*6}));
-const petals=Array.from({length:35},()=>({x:Math.random()*W,y:Math.random()*H,s:6+Math.random()*8,v:.5+Math.random()*1.2,r:Math.random()*360,rv:-1+Math.random()*2}));
-function burst(x,y,count=50,speed=5){
-for(let i=0;i<count;i++){
-const angle=Math.random()*Math.PI*2;
-const velocity=Math.random()*speed+1;
-parts.push({x:x,y:y,vx:Math.cos(angle)*velocity,vy:Math.sin(angle)*velocity,life:1,c:colors[Math.floor(Math.random()*colors.length)],s:1+Math.random()*3});
-}
-}
-function confetti(x,y){
-for(let i=0;i<140;i++){
-parts.push({x:x,y:y,vx:(Math.random()-.5)*14,vy:-Math.random()*15-3,life:1.7,c:colors[Math.floor(Math.random()*colors.length)],s:4+Math.random()*5,g:.25,rect:true});
-}
-}
-function fireworks(count=5){
-for(let i=0;i<count;i++){
-setTimeout(()=>burst(W*(.12+Math.random()*.76),H*(.1+Math.random()*.4),60,6),i*450);
-}
-}
-function animationLoop(time){
-ctx.clearRect(0,0,W,H);
-stars.forEach(star=>{
-ctx.globalAlpha=.2+.5*Math.abs(Math.sin(time/1000+star.p));
-ctx.fillStyle='#fff';
-ctx.beginPath();
-ctx.arc(star.x*W,star.y*H,star.r,0,Math.PI*2);
-ctx.fill();
-});
-if(petalsOn){
-petals.forEach(p=>{
-p.y+=p.v;
-p.x+=Math.sin(time/900+p.r)*.35;
-p.r+=p.rv;
-if(p.y>H+20){
-p.y=-20;
-p.x=Math.random()*W;
-}
-ctx.save();
-ctx.translate(p.x,p.y);
-ctx.rotate(p.r*Math.PI/180);
-ctx.globalAlpha=.7;
-ctx.fillStyle=colors[Math.floor(Math.random()*colors.length)];
-ctx.beginPath();
-ctx.ellipse(0,0,p.s*.5,p.s,Math.PI/4,0,Math.PI*2);
-ctx.fill();
-ctx.restore();
-});
-}
-parts=parts.filter(p=>p.life>0);
-parts.forEach(p=>{
-p.x+=p.vx;
-p.y+=p.vy;
-p.vy+=p.g||.05;
-p.vx*=.985;
-p.life-=.014;
-ctx.globalAlpha=Math.max(0,p.life);
-ctx.fillStyle=p.c;
-if(p.rect){
-ctx.fillRect(p.x,p.y,p.s,p.s*.6);
-}else{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.s,0,Math.PI*2);
-ctx.fill();
-}
-});
-ctx.globalAlpha=1;
-requestAnimationFrame(animationLoop);
-}
-requestAnimationFrame(animationLoop);
-function characterDelay(wpm){
-return 60000/(wpm*5);
-}
-async function typeText(element,text,wpm){
-element.style.visibility='visible';
-element.innerHTML='';
-const delay=characterDelay(wpm);
-for(let i=0;i<text.length;i++){
-element.textContent=text.substring(0,i+1);
-let extra=0;
-if(/[.!?]/.test(text[i]))extra=delay*1.5;
-if(/[,;:]/.test(text[i]))extra=delay*.7;
-await sleep(delay+extra);
-}
-}
-async function cinematicText(element,text){
-element.classList.remove('on');
-element.innerHTML='';
-void element.offsetWidth;
-element.classList.add('on');
-await typeText(element,text,EFFECT_WPM);
-}
-function ensureAudio(){
-if(audio)return;
-audio=new Audio(MUSIC_FILE);
-audio.loop=true;
-audio.volume=.55;
-audio.preload='auto';
-}
-async function playMusic(){
-ensureAudio();
-try{
-await audio.play();
-playing=true;
-$('music').textContent='❚❚ Musiqi';
-}catch(error){
-playing=false;
-$('music').textContent='♫ Musiqini aç';
-}
-}
+requestAnimationFrame(loop);
+
+/* ===== Kinematik açılış (~5 san) ===== */
+const show = (id, on = true) => $(id).classList.toggle('on', on);
 async function start(){
-if(started)return;
-started=true;
-clearInterval(countdownTimer);
-$('final').style.display='none';
-$('wait').style.display='none';
-$('celeb').style.display='block';
-$('card').classList.remove('hide');
-$('cine').style.display='flex';
-$('music').style.display='block';
-playMusic();
-await sleep(400);
-await cinematicText($('c1'),'Salihə...');
-await sleep(1200);
-$('c1').classList.remove('on');
-await sleep(800);
-$('cg').classList.add('on');
-$('rays').classList.add('on');
-await cinematicText($('c2'),'Bu gün sənin günündür.');
-await sleep(1600);
-$('c2').classList.remove('on');
-await sleep(900);
-await cinematicText($('c3'),'AD GÜNÜN MÜBARƏK!');
-confetti(W/2,H*.65);
-fireworks(5);
-await sleep(2800);
-$('cine').classList.add('off');
-$('bP').style.opacity='1';
-petalsOn=true;
-await sleep(1500);
-$('cine').style.display='none';
-$('greet').style.opacity='1';
-await sleep(900);
-await playPoem();
+  if(started) return; started = true;
+  try{ await Promise.race([document.fonts.ready, sleep(1000)]); }catch(e){}
+  $('final').style.display = 'none';
+  $('wait').style.display = 'none';
+  $('celeb').style.display = 'block';
+  $('card').classList.add('hide');
+  document.querySelector('.bP').style.opacity = 0;      // gecə
+  $('cine').style.display = 'flex';
+  await sleep(850*K);
+  show('c1');                                            // Salihə...
+  await sleep(2400*K); show('c1', false);
+  await sleep(750*K);
+  show('cg'); show('c2'); $('rays').classList.add('on'); // işıq
+  await sleep(2300*K); show('c2', false);
+  await sleep(600*K);
+  show('c3'); confetti(W/2, H*.6);                       // AD GÜNÜN MÜBARƏK!
+  await sleep(2000*K);
+  $('cine').classList.add('off');                        // kartın içinə keçid
+  document.querySelector('.bP').style.opacity = 1;       // gecə → çəhrayı/bənövşəyi
+  $('card').classList.remove('hide'); petalsOn = true;
+  $('music').style.display = 'block';
+  setTimeout(() => $('cine').style.display = 'none', 2200);
+  await sleep(1650*K);
+  poem();
 }
-async function playPoem(){
-const lines=[...document.querySelectorAll('.pl')];
-for(let i=0;i<lines.length;i++){
-const line=lines[i];
-const text=line.getAttribute('data-text');
-if(i===8){
-$('dim').classList.add('on');
-$('eyes').classList.add('on');
-$('card').classList.add('glow');
-await sleep(900);
+
+/* ===== Şeir: əl yazısı / yazı makinası effekti ===== */
+async function typeLine(el, txt, sp){
+  const a = Array.from(txt);
+  for(let i = 1; i <= a.length; i++){
+    el.innerHTML = '';
+    el.append(a.slice(0,i).join(''));
+    const c = document.createElement('i'); c.className = 'cur'; el.append(c);
+    const h = document.createElement('span'); h.style.visibility = 'hidden'; h.textContent = a.slice(i).join(''); el.append(h);
+    const ch = a[i-1];
+    const jitter = Math.random()*70 - 20;                 // əl ilə yazma hissi üçün təbii dalğalanma
+    const pausePunct = /[,]/.test(ch) ? 420 : /[.!]/.test(ch) ? 620 : /\s/.test(ch) ? 90 : 0;
+    await sleep(RM ? 4 : Math.max(60, sp + jitter + pausePunct));
+  }
+  el.innerHTML = ''; el.append(txt);
 }
-if(i===8||i===9)line.classList.add('eyeline');
-line.style.visibility='visible';
-line.scrollIntoView({behavior:'smooth',block:'center'});
-await typeText(line,text,POEM_WPM);
-await sleep(i===8?1800:1200);
-if(i===9){
-await sleep(1600);
-$('dim').classList.remove('on');
-$('eyes').classList.remove('on');
-}
-}
-$('bG').style.opacity='1';
-await sleep(900);
-$('closing').classList.add('in');
-await sleep(800);
-$('flowers').classList.add('in');
-await sleep(1200);
-$('wishbox').classList.add('in');
-setTimeout(revealSecret,10000);
+const follow = el => el.scrollIntoView({block: 'center', behavior: RM ? 'auto' : 'smooth'});
+async function poem(){
+  $('greet').style.opacity = 1;
+  await sleep(1750*K);
+  const L = [...document.querySelectorAll('#poem .pl')];
+  const T = L.map(l => l.textContent);
+  L.forEach(l => { l.style.visibility = 'hidden'; }); // yer qalır, mətn görünmür
+  const EY = T.findIndex(t => t.startsWith('göy gözlər'));   // gözlər sətirləri
+  for(let i = 0; i < L.length; i++){
+    const eye = EY >= 0 && (i === EY || i === EY + 1);
+    if(i === EY){                                        // GÖZLƏR effekti
+      $('dim').classList.add('on'); $('eyes').classList.add('on');
+      document.body.classList.add('eye'); eyeMode = true;
+      $('card').classList.remove('glow');
+      await sleep(3300*K);
+    }
+    L[i].style.visibility = 'visible';
+    if(eye) L[i].classList.add('eyeline');
+    follow(L[i]);
+    await typeLine(L[i], T[i], eye ? 190 : 150);
+    await sleep(EY >= 0 && i === EY + 1 ? 2700*K : 620*K);
+  }
+  $('dim').classList.remove('on'); $('eyes').classList.remove('on');
+  document.body.classList.remove('eye'); eyeMode = false;
+  setTimeout(() => L.forEach(l => l.classList.remove('eyeline')), 2000);
+  document.querySelector('.bG').style.opacity = 1;       // isti qızılı parıltı
+  $('card').classList.add('glow');
+  await sleep(1650*K);
+  $('closing').classList.add('in');
+  await sleep(700*K);
+  $('flowers').classList.add('in');
+  await sleep(3000*K);
+  $('wishbox').classList.add('in'); follow($('wishbox'));
+  setTimeout(revealSecret, 12000*K);
 }
 function revealSecret(){
-$('secretBtn').style.display='inline-block';
-requestAnimationFrame(()=>requestAnimationFrame(()=>$('secretBtn').classList.add('in')));
+  const b = $('secretBtn'); if(b.style.display === 'block') return;
+  b.style.display = 'block'; requestAnimationFrame(() => b.classList.add('in'));
 }
-$('cake').addEventListener('click',()=>{
-if($('cake').classList.contains('out'))return;
-$('cake').classList.add('out');
-const rect=$('cake').getBoundingClientRect();
-confetti(rect.left+rect.width/2,rect.top+rect.height*.3);
-fireworks(5);
-setTimeout(()=>$('wishmsg').textContent='Diləyin gerçək olsun. ❤️',700);
-setTimeout(revealSecret,2200);
+
+/* ===== İnteraktiv tort ===== */
+$('cake').addEventListener('click', () => {
+  const c = $('cake'); if(c.classList.contains('out')) return;
+  c.classList.add('out');
+  if(navigator.vibrate) navigator.vibrate([40, 30, 70]);
+  const r = c.getBoundingClientRect();
+  confetti(r.left + r.width/2, r.top + r.height*.3); fireworks(4);
+  setTimeout(() => { $('wishmsg').textContent = 'Diləyin gerçək olsun. ❤️'; }, 900);
+  setTimeout(revealSecret, 2500);
 });
-$('secretBtn').onclick=()=>{
-$('secret').style.display='flex';
-requestAnimationFrame(()=>requestAnimationFrame(()=>$('secret').classList.add('on')));
-burst(W/2,H/2,50,4);
+
+/* ===== Gizli ikinci mesaj ===== */
+$('secretBtn').onclick = () => {
+  const s = $('secret'); s.style.display = 'flex';
+  requestAnimationFrame(() => requestAnimationFrame(() => s.classList.add('on')));
+  burst(W/2, H/2, 30, 3);
 };
-$('secretClose').onclick=()=>{
-$('secret').classList.remove('on');
-setTimeout(()=>$('secret').style.display='none',900);
+$('secretClose').onclick = () => { const s = $('secret'); s.classList.remove('on'); setTimeout(() => s.style.display = 'none', 1000); };
+
+/* ===== Musiqi (autoplay yoxdur) ===== */
+let audio = null, playing = false;
+function ensureAudio(){
+  if(audio) return audio;
+  audio = new Audio(MUSIC_SRC);
+  audio.loop = true;
+  audio.volume = .55;
+  audio.addEventListener('error', () => {
+    console.error('Musiqi yüklənmədi: "' + MUSIC_SRC + '" faylı index.html ilə eyni qovluqda tapılmadı və ya dəstəklənmir.');
+    playing = false;
+    $('music').textContent = 'Musiqi faylı tapılmadı';
+    setTimeout(() => { $('music').textContent = '♫ Musiqini aç'; }, 2200);
+  });
+  return audio;
+}
+$('music').onclick = () => {
+  const b = $('music');
+  if(!MUSIC_SRC){ b.textContent = 'Musiqi faylı əlavə olunmayıb'; setTimeout(() => b.textContent = '♫ Musiqini aç', 2200); return; }
+  ensureAudio();
+  if(playing){ audio.pause(); playing = false; b.textContent = '♫ Musiqini aç'; return; }
+  audio.play().then(() => { playing = true; b.textContent = '❚❚ Səssiz'; })
+    .catch(err => { console.error('Musiqi başlamadı:', err); b.textContent = 'Musiqi başlamadı'; setTimeout(() => { b.textContent = '♫ Musiqini aç'; }, 2200); });
 };
-$('music').onclick=async()=>{
-ensureAudio();
-if(playing){
-audio.pause();
-playing=false;
-$('music').textContent='♫ Musiqini aç';
-}else{
-await playMusic();
+
+/* ===== Geri sayım ===== */
+function tick(){
+  if(started) return;
+  const diff = target - Date.now();
+  if(diff <= 0) return start();                          // vaxt keçibsə də dərhal açılır
+  if(diff <= 5000){
+    const n = Math.ceil(diff/1000);
+    $('final').style.display = 'flex';
+    if(n !== lastSec){ lastSec = n; const b = $('bigNum'); b.textContent = n; b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; burst(W/2, H/2, 22, 4); }
+    return;
+  }
+  $('d').textContent = Math.floor(diff/864e5);
+  $('h').textContent = Math.floor(diff/36e5%24);
+  $('m').textContent = Math.floor(diff/6e4%60);
+  $('s').textContent = Math.floor(diff/1e3%60);
 }
-};
-document.addEventListener('pointerdown',()=>{
-if(started&&!playing)playMusic();
-});
-document.addEventListener('keydown',()=>{
-if(started&&!playing)playMusic();
-});
-function updateCountdown(){
-if(started)return;
-const difference=Math.max(0,targetTime-Date.now());
-const days=Math.floor(difference/86400000);
-const hours=Math.floor((difference%86400000)/3600000);
-const minutes=Math.floor((difference%3600000)/60000);
-const seconds=Math.floor((difference%60000)/1000);
-$('d').textContent=String(days).padStart(2,'0');
-$('h').textContent=String(hours).padStart(2,'0');
-$('m').textContent=String(minutes).padStart(2,'0');
-$('s').textContent=String(seconds).padStart(2,'0');
-}
-let lastCountdownSecond=null;
-function countdownTick(){
-if(started)return;
-const difference=targetTime-Date.now();
-if(difference<=0){
-clearInterval(countdownTimer);
-$('d').textContent='00';
-$('h').textContent='00';
-$('m').textContent='00';
-$('s').textContent='00';
-$('final').style.display='none';
-start();
-return;
-}
-updateCountdown();
-const totalSeconds=Math.ceil(difference/1000);
-if(totalSeconds<=5){
-if(totalSeconds!==lastCountdownSecond){
-lastCountdownSecond=totalSeconds;
-showBigNumber(totalSeconds);
-}
-}else{
-lastCountdownSecond=null;
-$('final').style.display='none';
-}
-}
-function showBigNumber(number){
-$('final').style.display='flex';
-$('bigNum').textContent=number;
-$('bigNum').style.animation='none';
-void $('bigNum').offsetWidth;
-$('bigNum').style.animation='beat 1s ease-out';
-burst(W/2,H/2,35,5);
-if(number<=2)fireworks(1);
-}
-function initialize(){
-if(IS_OPEN){
-start();
-return;
-}
-if(IS_DEMO){
-targetTime=Date.now()+10000;
-}
-updateCountdown();
-countdownTick();
-countdownTimer=setInterval(countdownTick,50);
-}
-initialize();
+setInterval(tick, 100); tick();
+document.addEventListener('visibilitychange', tick);
 </script>
 </body>
 </html>
