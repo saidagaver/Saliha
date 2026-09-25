@@ -267,19 +267,19 @@ async function start(){
     document.addEventListener('keydown', resumeMusic, {once:true});
   }
 
-  await sleep(1200*K);
+  await sleep(900*K);
   show('c1');
   await sleep(4000*K);
   show('c1', false);
 
-  await sleep(1200*K);
+  await sleep(900*K);
   show('cg');
   show('c2');
   $('rays').classList.add('on');
   await sleep(4000*K);
   show('c2', false);
 
-  await sleep(1500*K);
+  await sleep(1000*K);
   show('c3');
   confetti(W/2, H*.6);
   await sleep(4000*K);
@@ -404,10 +404,10 @@ async function poem(){
   document.querySelector('.bG').style.opacity = 1;
   $('card').classList.add('glow');
 
-  await sleep(2500*K);
+  await sleep(2000*K);
 
   $('closing').classList.add('in');
-  await sleep(1200*K);
+  await sleep(900*K);
 
   $('flowers').classList.add('in');
   await sleep(3000*K);
