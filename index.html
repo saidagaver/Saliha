@@ -234,86 +234,189 @@ requestAnimationFrame(loop);
 /* ===== Kinematik açılış (~5 san) ===== */
 const show = (id, on = true) => $(id).classList.toggle('on', on);
 async function start(){
-  if(started) return; started = true;
+  if(started) return;
+  started = true;
+
   try{ await Promise.race([document.fonts.ready, sleep(1000)]); }catch(e){}
+
   $('final').style.display = 'none';
   $('wait').style.display = 'none';
   $('celeb').style.display = 'block';
   $('card').classList.add('hide');
-  document.querySelector('.bP').style.opacity = 0;      // gecə
+  document.querySelector('.bP').style.opacity = 0;
   $('cine').style.display = 'flex';
+
+  /* Geri sayım bitən kimi musiqini başlatmağa çalışırıq. */
+  try{
+    ensureAudio();
+    audio.currentTime = 0;
+    await audio.play();
+    playing = true;
+    $('music').textContent = '❚❚ Səssiz';
+  }catch(e){
+    /* Brauzer autoplay-i bloklasa, ilk toxunuşda avtomatik başlayacaq. */
+    const resumeMusic = () => {
+      ensureAudio();
+      audio.play().then(() => {
+        playing = true;
+        $('music').textContent = '❚❚ Səssiz';
+      }).catch(()=>{});
+      document.removeEventListener('pointerdown', resumeMusic);
+      document.removeEventListener('keydown', resumeMusic);
+    };
+    document.addEventListener('pointerdown', resumeMusic, {once:true});
+    document.addEventListener('keydown', resumeMusic, {once:true});
+  }
+
   await sleep(1200*K);
-  show('c1');                                            // Salihə...
-  await sleep(4000*K); show('c1', false);
-  await sleep(1200*K);
-  show('cg'); show('c2'); $('rays').classList.add('on'); // işıq
-  await sleep(4000*K); show('c2', false);
-  await sleep(1500*K);
-  show('c3'); confetti(W/2, H*.6);                       // AD GÜNÜN MÜBARƏK!
+  show('c1');
   await sleep(4000*K);
-  $('cine').classList.add('off');                        // kartın içinə keçid
-  document.querySelector('.bP').style.opacity = 1;       // gecə → çəhrayı/bənövşəyi
-  $('card').classList.remove('hide'); petalsOn = true;
+  show('c1', false);
+
+  await sleep(1200*K);
+  show('cg');
+  show('c2');
+  $('rays').classList.add('on');
+  await sleep(4000*K);
+  show('c2', false);
+
+  await sleep(1500*K);
+  show('c3');
+  confetti(W/2, H*.6);
+  await sleep(4000*K);
+
+  $('cine').classList.add('off');
+  document.querySelector('.bP').style.opacity = 1;
+  $('card').classList.remove('hide');
+  petalsOn = true;
   $('music').style.display = 'block';
   setTimeout(() => $('cine').style.display = 'none', 2200);
-  await sleep(2500*K);
-  poem();
+
+  await sleep(3000*K);
+  await poem();
 }
 
 /* ===== Şeir: əl yazısı / yazı makinası effekti ===== */
 async function typeLine(el, txt, sp){
-  const a = Array.from(txt);
-  for(let i = 1; i <= a.length; i++){
+  const chars = Array.from(txt);
+
+  for(let i = 1; i <= chars.length; i++){
     el.innerHTML = '';
-    el.append(a.slice(0,i).join(''));
-    const c = document.createElement('i'); c.className = 'cur'; el.append(c);
-    const h = document.createElement('span'); h.style.visibility = 'hidden'; h.textContent = a.slice(i).join(''); el.append(h);
-    const ch = a[i-1];
-    const jitter = Math.random()*70 - 20;                 // əl ilə yazma hissi üçün təbii dalğalanma
-    const pausePunct = /[,]/.test(ch) ? 420 : /[.!]/.test(ch) ? 620 : /\s/.test(ch) ? 90 : 0;
-    await sleep(RM ? 4 : Math.max(110, sp + jitter + pausePunct));
+    el.append(document.createTextNode(chars.slice(0,i).join('')));
+
+    const c = document.createElement('i');
+    c.className = 'cur';
+    el.append(c);
+
+    const h = document.createElement('span');
+    h.style.visibility = 'hidden';
+    h.textContent = chars.slice(i).join('');
+    el.append(h);
+
+    const ch = chars[i-1];
+
+    /* Həqiqətən yavaş, əl ilə yazılırmış kimi effekt. */
+    const jitter = Math.random()*80 - 25;
+    const pausePunct =
+      /[,;:]/.test(ch) ? 500 :
+      /[.!?]/.test(ch) ? 850 :
+      /\s/.test(ch) ? 130 : 0;
+
+    await sleep(Math.max(180, sp + jitter + pausePunct));
   }
-  el.innerHTML = ''; el.append(txt);
+
+  el.innerHTML = '';
+  el.append(document.createTextNode(txt));
 }
-const follow = el => el.scrollIntoView({block: 'center', behavior: RM ? 'auto' : 'smooth'});
+
+const follow = el => el.scrollIntoView({
+  block: 'center',
+  behavior: RM ? 'auto' : 'smooth'
+});
+
 async function poem(){
-  $('greet').style.opacity = 1;
-  await sleep(3000*K);
+  const greet = $('greet');
+  greet.style.opacity = 1;
+
+  /* "Dostum Salihə," oxunsun, sonra ilk misralara keçsin. */
+  await sleep(3500*K);
+
   const L = [...document.querySelectorAll('#poem .pl')];
   const T = L.map(l => l.textContent);
-  L.forEach(l => { l.style.visibility = 'hidden'; }); // yer qalır, mətn görünmür
-  const EY = T.findIndex(t => t.startsWith('göy gözlər'));   // gözlər sətirləri
+
+  /* Səhifə açılan kimi bütün şeir sətirləri tamamilə boş olur.
+     Heç bir hazır mətn əvvəlcədən görünməyəcək. */
+  L.forEach(l => {
+    l.style.visibility = 'visible';
+    l.innerHTML = '';
+    l.classList.remove('eyeline');
+  });
+
+  const EY = T.findIndex(t => t.trim().startsWith('göy gözlər'));
+
   for(let i = 0; i < L.length; i++){
-    const eye = EY >= 0 && (i === EY || i === EY + 1);
-    if(i === EY){                                        // GÖZLƏR effekti
-      $('dim').classList.add('on'); $('eyes').classList.add('on');
-      document.body.classList.add('eye'); eyeMode = true;
+    const isEyeLine = EY >= 0 && (i === EY || i === EY + 1);
+
+    /*
+      Göz effekti iki göz misrasından ƏVVƏL başlayır.
+      Əvvəlki misra tam yazılıb oxunur, sonra 4 saniyə gözlənilir,
+      daha sonra göz effekti 4 saniyə görünür.
+    */
+    if(i === EY){
+      await sleep(4000*K);
+
+      $('dim').classList.add('on');
+      $('eyes').classList.add('on');
+      document.body.classList.add('eye');
+      eyeMode = true;
       $('card').classList.remove('glow');
+
       await sleep(4000*K);
     }
-    L[i].style.visibility = 'visible';
+
     L[i].innerHTML = '';
-    if(eye) L[i].classList.add('eyeline');
+    L[i].style.visibility = 'visible';
+
+    if(isEyeLine) L[i].classList.add('eyeline');
+
     follow(L[i]);
-    await typeLine(L[i], T[i], eye ? 230 : 180);
-    await sleep(EY >= 0 && i === EY + 1 ? 4000*K : 3500*K);
+
+    /* Misranın hər hərfi yavaş-yavaş yazılır. */
+    await typeLine(L[i], T[i], isEyeLine ? 270 : 250);
+
+    /*
+      Oxuyan şəxsə misranı rahat oxumaq üçün gözləmə.
+      Gözlə bağlı ikinci misradan sonra göz effekti dərhal yox olur.
+    */
+    if(isEyeLine && i === EY + 1){
+      await sleep(4500*K);
+      $('dim').classList.remove('on');
+      $('eyes').classList.remove('on');
+      document.body.classList.remove('eye');
+      eyeMode = false;
+      await sleep(1800*K);
+    }else{
+      await sleep(4000*K);
+    }
   }
-  $('dim').classList.remove('on'); $('eyes').classList.remove('on');
-  document.body.classList.remove('eye'); eyeMode = false;
+
   setTimeout(() => L.forEach(l => l.classList.remove('eyeline')), 2000);
-  document.querySelector('.bG').style.opacity = 1;       // isti qızılı parıltı
+
+  document.querySelector('.bG').style.opacity = 1;
   $('card').classList.add('glow');
+
   await sleep(2500*K);
+
   $('closing').classList.add('in');
-  await sleep(700*K);
+  await sleep(1200*K);
+
   $('flowers').classList.add('in');
   await sleep(3000*K);
-  $('wishbox').classList.add('in'); follow($('wishbox'));
+
+  $('wishbox').classList.add('in');
+  follow($('wishbox'));
+
   setTimeout(revealSecret, 12000*K);
-}
-function revealSecret(){
-  const b = $('secretBtn'); if(b.style.display === 'block') return;
-  b.style.display = 'block'; requestAnimationFrame(() => b.classList.add('in'));
 }
 
 /* ===== İnteraktiv tort ===== */
@@ -340,6 +443,7 @@ let audio = null, playing = false;
 function ensureAudio(){
   if(audio) return audio;
   audio = new Audio(MUSIC_SRC);
+  audio.autoplay = true;
   audio.loop = true;
   audio.volume = .55;
   audio.addEventListener('error', () => {
@@ -359,24 +463,33 @@ $('music').onclick = () => {
     .catch(err => { console.error('Musiqi başlamadı:', err); b.textContent = 'Musiqi başlamadı'; setTimeout(() => { b.textContent = '♫ Musiqini aç'; }, 2200); });
 };
 
-/* ===== Geri sayım ===== */
-function tick(){
+/* ===== Səhifə açılan kimi 3-2-1 ===== */
+async function openingCountdown(){
   if(started) return;
-  const diff = target - Date.now();
-  if(diff <= 0) return start();                          // vaxt keçibsə də dərhal açılır
-  if(diff <= 5000){
-    const n = Math.ceil(diff/1000);
-    $('final').style.display = 'flex';
-    if(n !== lastSec){ lastSec = n; const b = $('bigNum'); b.textContent = n; b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; burst(W/2, H/2, 22, 4); }
-    return;
+
+  $('wait').style.display = 'none';
+  $('final').style.display = 'flex';
+
+  const nums = [3,2,1];
+
+  for(const n of nums){
+    const b = $('bigNum');
+    b.textContent = n;
+    b.style.animation = 'none';
+    void b.offsetWidth;
+    b.style.animation = '';
+    burst(W/2, H/2, 28, 4.5);
+    await sleep(1000);
   }
-  $('d').textContent = Math.floor(diff/864e5);
-  $('h').textContent = Math.floor(diff/36e5%24);
-  $('m').textContent = Math.floor(diff/6e4%60);
-  $('s').textContent = Math.floor(diff/1e3%60);
+
+  $('final').style.display = 'none';
+  await start();
 }
-setInterval(tick, 100); tick();
-document.addEventListener('visibilitychange', tick);
+
+openingCountdown();
+document.addEventListener('visibilitychange', () => {
+  if(!document.hidden && !started) openingCountdown();
+});
 </script>
 </body>
 </html>
