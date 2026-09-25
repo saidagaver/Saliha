@@ -56,7 +56,7 @@ radial-gradient(circle at 20% 15%,#5b1a7a,transparent 45%),
 radial-gradient(circle at 85% 80%,#932e6e,transparent 50%),
 linear-gradient(135deg,#3a0d5c,#7b2a8c 55%,#c96ea0);
 opacity:0;
-transition:opacity:3s ease;
+transition:opacity 3s ease;
 }
 .bG{
 position:absolute;
@@ -65,7 +65,7 @@ background:
 radial-gradient(ellipse at 50% 0%,rgba(255,209,102,.5),transparent 60%),
 radial-gradient(ellipse at 50% 100%,rgba(255,143,179,.25),transparent 60%);
 opacity:0;
-transition:opacity:4s ease;
+transition:opacity 4s ease;
 }
 .rays{
 position:fixed;
@@ -77,7 +77,7 @@ margin-left:-80vmax;
 pointer-events:none;
 z-index:1;
 opacity:0;
-transition:opacity:2s ease;
+transition:opacity 2s ease;
 background:repeating-conic-gradient(from 0deg,rgba(255,220,160,.09) 0 6deg,transparent 6deg 18deg);
 -webkit-mask:radial-gradient(circle,#000,transparent 55%);
 mask:radial-gradient(circle,#000,transparent 55%);
@@ -233,71 +233,6 @@ margin-top:20px;
 font-size:.9rem;
 opacity:.7;
 }
-.intro{
-min-height:190px;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-}
-.introText{
-font-family:'Dancing Script',cursive;
-font-size:2.4rem;
-color:var(--cream);
-opacity:0;
-transform:scale(.75);
-text-shadow:0 0 30px rgba(255,209,102,.4);
-}
-.introText.show{
-animation:introIn 1.4s cubic-bezier(.2,.8,.2,1) forwards;
-}
-.introText.gold{
-color:var(--gold);
-}
-@keyframes introIn{
-0%{
-opacity:0;
-transform:scale(.75) translateY(20px);
-}
-60%{
-opacity:1;
-transform:scale(1.08) translateY(0);
-}
-100%{
-opacity:1;
-transform:scale(1);
-}
-}
-.mainTitle{
-opacity:0;
-transform:scale(.8);
-transition:opacity:1s ease,transform:1s ease;
-}
-.mainTitle.show{
-opacity:1;
-transform:scale(1);
-}
-.divider{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:12px;
-margin:8px 0 14px;
-opacity:0;
-transition:opacity:1s ease;
-}
-.divider.show{
-opacity:1;
-}
-.divider i{
-display:block;
-width:70px;
-height:1px;
-background:linear-gradient(90deg,transparent,var(--gold));
-}
-.divider i:last-child{
-background:linear-gradient(90deg,var(--gold),transparent);
-}
 .greeting{
 font-family:'Playfair Display',serif;
 font-style:italic;
@@ -305,7 +240,7 @@ font-size:1.15rem;
 margin:14px 0 8px;
 color:var(--cream);
 opacity:0;
-transition:opacity:.8s ease;
+transition:opacity .8s ease;
 }
 .name{
 font-family:'Dancing Script',cursive;
@@ -337,7 +272,7 @@ text-shadow:
 .rv{
 opacity:0;
 transform:translateY(14px);
-transition:opacity:1s ease,transform:1s ease;
+transition:opacity 1s ease,transform 1s ease;
 }
 .rv.in{
 opacity:1;
@@ -360,7 +295,7 @@ font-family:'Playfair Display',serif;
 font-style:italic;
 font-size:1.2rem;
 color:var(--gold);
-margin-bottom:8px;
+margin-bottom:6px;
 }
 #cake{
 background:none;
@@ -444,11 +379,19 @@ opacity:0;
 transform:translate(14px,-90px) scale(3);
 }
 }
+.wishmsg{
+font-family:'Dancing Script',cursive;
+font-size:1.7rem;
+color:var(--cream);
+margin-top:10px;
+min-height:2em;
+text-shadow:0 0 20px rgba(255,209,102,.6);
+}
 .cakeHint{
 font-family:'Dancing Script',cursive;
-font-size:1.35rem;
+font-size:1.3rem;
 color:var(--cream);
-margin-top:2px;
+margin-top:0;
 opacity:.9;
 animation:hintPulse 1.8s ease-in-out infinite;
 }
@@ -457,14 +400,6 @@ animation:hintPulse 1.8s ease-in-out infinite;
 opacity:.45;
 transform:translateY(3px);
 }
-}
-.wishmsg{
-font-family:'Dancing Script',cursive;
-font-size:1.7rem;
-color:var(--cream);
-margin-top:10px;
-min-height:2em;
-text-shadow:0 0 20px rgba(255,209,102,.6);
 }
 .btn{
 font:inherit;
@@ -604,15 +539,141 @@ transform:scale(1);
 opacity:1;
 }
 }
+#cinematic{
+position:fixed;
+inset:0;
+z-index:30;
+display:none;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:#000;
+overflow:hidden;
+}
+#cinematic.on{
+display:flex;
+}
+.cineGlow{
+position:absolute;
+inset:-30%;
+background:
+radial-gradient(circle at 50% 50%,rgba(255,209,102,.16),transparent 20%),
+radial-gradient(circle at 50% 50%,rgba(255,143,179,.12),transparent 45%),
+radial-gradient(circle at 50% 50%,rgba(163,112,247,.1),transparent 70%);
+animation:cinePulse 4s ease-in-out infinite;
+pointer-events:none;
+}
+@keyframes cinePulse{
+50%{
+transform:scale(1.2);
+opacity:.65;
+}
+}
+.cineRays{
+position:absolute;
+inset:-50%;
+background:repeating-conic-gradient(from 0deg,transparent 0deg,rgba(255,209,102,.08) 7deg,transparent 14deg);
+animation:cineSpin 35s linear infinite;
+mask-image:radial-gradient(circle,#000,transparent 65%);
+-webkit-mask-image:radial-gradient(circle,#000,transparent 65%);
+pointer-events:none;
+}
+@keyframes cineSpin{
+to{
+transform:rotate(360deg);
+}
+}
+.cineParticles{
+position:absolute;
+inset:0;
+pointer-events:none;
+background-image:
+radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 2px),
+radial-gradient(circle,rgba(255,209,102,.6) 1px,transparent 2px),
+radial-gradient(circle,rgba(255,143,179,.5) 1px,transparent 2px);
+background-size:90px 90px,130px 130px,170px 170px;
+animation:cineStars 8s linear infinite;
+opacity:.55;
+}
+@keyframes cineStars{
+to{
+background-position:0 90px,0 130px,0 170px;
+}
+}
+#cineText{
+position:relative;
+z-index:3;
+font-family:'Dancing Script',cursive;
+font-size:clamp(2.5rem,9vw,5rem);
+font-weight:700;
+color:var(--cream);
+text-shadow:
+0 0 20px rgba(255,209,102,.65),
+0 0 60px rgba(255,143,179,.35);
+min-height:1.4em;
+padding:0 20px;
+}
+#cineText.gold{
+color:var(--gold);
+}
+#cineTitle{
+position:relative;
+z-index:3;
+font-family:'Playfair Display',serif;
+font-size:clamp(2rem,7vw,4rem);
+font-weight:600;
+background:linear-gradient(90deg,var(--gold),var(--pink),var(--gold));
+background-size:200% auto;
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+text-shadow:0 0 45px rgba(255,209,102,.35);
+animation:titleShine 2.5s linear infinite;
+padding:0 20px;
+opacity:0;
+transform:scale(.7);
+}
+@keyframes titleShine{
+to{
+background-position:200% center;
+}
+}
+.cineIn{
+animation:cineIn 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes cineIn{
+0%{
+opacity:0;
+transform:scale(.75) translateY(20px);
+filter:blur(8px);
+}
+60%{
+opacity:1;
+transform:scale(1.05) translateY(0);
+filter:blur(0);
+}
+100%{
+opacity:1;
+transform:scale(1);
+filter:blur(0);
+}
+}
+.cineOut{
+animation:cineOut 1s ease forwards;
+}
+@keyframes cineOut{
+to{
+opacity:0;
+transform:scale(1.08);
+filter:blur(5px);
+}
+}
 @media(max-width:480px){
 .card{
 padding:36px 18px 30px;
 }
 h1{
 font-size:1.6rem;
-}
-.introText{
-font-size:2rem;
 }
 .poem{
 font-size:1.28rem;
@@ -648,6 +709,13 @@ padding:12px 10px;
 <div class="big" id="bigNum">5</div>
 <p>✨</p>
 </div>
+<div id="cinematic">
+<div class="cineGlow"></div>
+<div class="cineRays"></div>
+<div class="cineParticles"></div>
+<div id="cineText"></div>
+<div id="cineTitle">AD GÜNÜN MÜBARƏK! 🌸</div>
+</div>
 <div class="card" id="card">
 <div id="wait">
 <div class="seal">🔐🌷</div>
@@ -674,12 +742,8 @@ padding:12px 10px;
 <p class="lockmsg">Geri sayım bitən anda hədiyyə özü açılacaq 🔒</p>
 </div>
 <div id="celeb">
-<div class="intro" id="intro">
-<div class="introText" id="intro1">Salihə...</div>
-<div class="introText gold" id="intro2">Bu gün sənin günündür.</div>
-</div>
-<h1 class="mainTitle" id="mainTitle">AD GÜNÜN MÜBARƏK! 🌸</h1>
-<div class="divider" id="divider">
+<h1>AD GÜNÜN MÜBARƏK! 🌸</h1>
+<div class="divider">
 <i></i>
 <span>🌸</span>
 <i></i>
@@ -745,7 +809,7 @@ səninlə olması diləyi ilə 🎊
 <span class="smoke"></span>
 <span class="smoke"></span>
 </button>
-<p class="cakeHint">Şama toxun ✨</p>
+<p class="cakeHint" id="cakeHint">Şama toxun ✨</p>
 <p class="wishmsg" id="wishmsg"></p>
 </div>
 <button class="btn rv" id="secretBtn" style="display:none">
@@ -775,7 +839,7 @@ const params=new URLSearchParams(window.location.search);
 const IS_DEMO=params.has('demo');
 const IS_OPEN=params.has('open');
 const NORMAL_TARGET=Date.parse('2026-09-28T00:00:00+04:00');
-const EFFECT_WPM=40;
+const EFFECT_WPM=50;
 const POEM_WPM=100;
 const MUSIC_FILE='music.mp3';
 let targetTime=NORMAL_TARGET;
@@ -943,8 +1007,10 @@ function charDelay(wpm){
 return 60000/(wpm*5);
 }
 async function typeText(element,text,wpm){
-element.classList.add('show');
 element.textContent='';
+element.classList.remove('cineOut');
+element.classList.add('cineIn');
+element.classList.add('show');
 const delay=charDelay(wpm);
 for(let i=0;i<text.length;i++){
 element.textContent=text.substring(0,i+1);
@@ -964,6 +1030,13 @@ audio=new Audio(MUSIC_FILE);
 audio.loop=true;
 audio.volume=.55;
 audio.preload='auto';
+audio.addEventListener('error',()=>{
+playing=false;
+$('music').textContent='Musiqi tapılmadı';
+setTimeout(()=>{
+$('music').textContent='♫ Musiqini aç';
+},2200);
+});
 }
 async function playMusic(){
 ensureAudio();
@@ -1007,6 +1080,43 @@ fireworks(6);
 confetti(W/2,H*.6,100);
 }
 }
+async function cinematicOpening(){
+const cinematic=$('cinematic');
+const text=$('cineText');
+const title=$('cineTitle');
+cinematic.classList.add('on');
+text.classList.remove('cineOut');
+title.style.opacity='0';
+title.classList.remove('cineIn');
+text.textContent='';
+await sleep(500);
+burst(W/2,H/2,60,5);
+fireworks(3);
+await typeText(text,'Salihə...',EFFECT_WPM);
+await sleep(900);
+text.classList.add('cineOut');
+await sleep(900);
+text.textContent='';
+text.classList.remove('cineOut');
+await typeText(text,'Bu gün sənin günündür.',EFFECT_WPM);
+fireworks(4);
+await sleep(1000);
+text.classList.add('cineOut');
+await sleep(800);
+text.style.display='none';
+title.classList.add('cineIn');
+burst(W/2,H*.5,120,7);
+confetti(W/2,H*.65,180);
+fireworks(8);
+await sleep(2200);
+title.classList.add('cineOut');
+await sleep(1100);
+cinematic.classList.remove('on');
+text.style.display='';
+text.textContent='';
+title.style.opacity='0';
+title.classList.remove('cineIn','cineOut');
+}
 async function startCelebration(){
 if(started)return;
 started=true;
@@ -1019,23 +1129,9 @@ $('card').classList.add('glow');
 $('music').style.display='block';
 startLastFiveEffects();
 playMusic();
-await sleep(400);
-$('intro1').classList.add('show');
-burst(W/2,H*.32,45,4);
-await sleep(1700);
-$('intro1').classList.remove('show');
-await sleep(350);
-$('intro2').classList.add('show');
-fireworks(3);
-await sleep(1900);
-$('intro').style.display='none';
-$('mainTitle').classList.add('show');
-$('divider').classList.add('show');
-burst(W/2,H*.3,70,5);
-fireworks(5);
-await sleep(900);
+await cinematicOpening();
 $('greet').style.opacity='1';
-await sleep(300);
+await sleep(400);
 await playPoem();
 }
 async function playPoem(){
@@ -1111,16 +1207,6 @@ playing=false;
 $('music').textContent='♫ Musiqini aç';
 }else{
 await playMusic();
-}
-});
-document.addEventListener('pointerdown',()=>{
-if(started&&!playing){
-playMusic();
-}
-});
-document.addEventListener('keydown',()=>{
-if(started&&!playing){
-playMusic();
 }
 });
 function updateCountdown(){
