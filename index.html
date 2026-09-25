@@ -184,7 +184,7 @@ let target = new Date('2026-09-28T00:00:00+04:00').getTime();
 const Q = location.search;
 if(/demo/.test(Q)) target = Date.now() + 10000;   // test: 10 saniyəlik geri sayım
 if(/open/.test(Q)) target = 0;                     // test: dərhal açılış
-const MUSIC_SRC = '';  // musiqi faylı: məs. 'music.mp3' (qovluğa əlavə et)
+const MUSIC_SRC = 'music.mp3';  // eyni qovluqda olmalıdır
 
 const $ = id => document.getElementById(id);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -205,7 +205,7 @@ const petals = Array.from({length: MOB ? 22 : 45}, () => newPetal(true));
 function newPetal(init){ return {x: Math.random()*(W||400), y: init ? -Math.random()*(H||700) : -20, s: 7+Math.random()*7, c: cols[Math.random()*6|0], v: .7+Math.random()*1.3, sw: Math.random()*6, r: Math.random()*360, rv: Math.random()*2-1}; }
 function burst(x, y, n, spd){ for(let i=0;i<n;i++){ const a = Math.random()*6.283, v = Math.random()*spd+2; parts.push({x, y, vx: Math.cos(a)*v, vy: Math.sin(a)*v, life: 1, c: cols[Math.random()*6|0], s: 1.5+Math.random()*2.5}); } }
 function confetti(x, y){ if(RM) return; for(let i=0;i<(MOB ? 70 : 120);i++) parts.push({x, y, vx: (Math.random()-.5)*15, vy: -Math.random()*15-4, life: 1.6, c: cols[Math.random()*6|0], s: 5+Math.random()*4, g: .28, sq: 1}); }
-function fireworks(n){ if(RM) return; for(let i=0;i<n;i++) setTimeout(() => burst(W*(.15+Math.random()*.7), H*(.12+Math.random()*.35), MOB ? 40 : 60, 5.5), i*450); }
+function fireworks(n){ if(RM) return; for(let i=0;i<n;i++) setTimeout(() => burst(W*(.15+Math.random()*.7), H*(.12+Math.random()*.35), MOB ? 40 : 60, 5.5), i*650); }
 function loop(t){
   cx.clearRect(0,0,W,H);
   dimF += ((eyeMode ? 1 : 0) - dimF)*.05; const f = 1 - dimF*.8;
@@ -242,21 +242,21 @@ async function start(){
   $('card').classList.add('hide');
   document.querySelector('.bP').style.opacity = 0;      // gecə
   $('cine').style.display = 'flex';
-  await sleep(600*K);
+  await sleep(850*K);
   show('c1');                                            // Salihə...
-  await sleep(1700*K); show('c1', false);
-  await sleep(500*K);
+  await sleep(2400*K); show('c1', false);
+  await sleep(750*K);
   show('cg'); show('c2'); $('rays').classList.add('on'); // işıq
-  await sleep(1600*K); show('c2', false);
-  await sleep(400*K);
+  await sleep(2300*K); show('c2', false);
+  await sleep(600*K);
   show('c3'); confetti(W/2, H*.6);                       // AD GÜNÜN MÜBARƏK!
-  await sleep(1400*K);
+  await sleep(2000*K);
   $('cine').classList.add('off');                        // kartın içinə keçid
   document.querySelector('.bP').style.opacity = 1;       // gecə → çəhrayı/bənövşəyi
   $('card').classList.remove('hide'); petalsOn = true;
   $('music').style.display = 'block';
-  setTimeout(() => $('cine').style.display = 'none', 1700);
-  await sleep(1200*K);
+  setTimeout(() => $('cine').style.display = 'none', 2200);
+  await sleep(1650*K);
   poem();
 }
 
@@ -268,14 +268,14 @@ async function typeLine(el, txt, sp){
     el.append(a.slice(0,i).join(''));
     const c = document.createElement('i'); c.className = 'cur'; el.append(c);
     const h = document.createElement('span'); h.style.visibility = 'hidden'; h.textContent = a.slice(i).join(''); el.append(h);
-    await sleep(RM ? 4 : sp + (/[,.]/.test(a[i-1]) ? 220 : 0));
+    await sleep(RM ? 4 : sp + (/[,.]/.test(a[i-1]) ? 320 : 0));
   }
   el.innerHTML = ''; el.append(txt);
 }
 const follow = el => el.scrollIntoView({block: 'center', behavior: RM ? 'auto' : 'smooth'});
 async function poem(){
   $('greet').style.opacity = 1;
-  await sleep(1300*K);
+  await sleep(1750*K);
   const L = [...document.querySelectorAll('#poem .pl')];
   const T = L.map(l => l.textContent);
   L.forEach(l => { l.style.visibility = 'hidden'; }); // yer qalır, mətn görünmür
@@ -286,24 +286,26 @@ async function poem(){
       $('dim').classList.add('on'); $('eyes').classList.add('on');
       document.body.classList.add('eye'); eyeMode = true;
       $('card').classList.remove('glow');
-      await sleep(2400*K);
+      await sleep(3300*K);
     }
     L[i].style.visibility = 'visible';
     if(eye) L[i].classList.add('eyeline');
     follow(L[i]);
-    await typeLine(L[i], T[i], eye ? 85 : 55);
-    await sleep(EY >= 0 && i === EY + 1 ? 2000*K : 450*K);
+    await typeLine(L[i], T[i], eye ? 130 : 100);
+    await sleep(EY >= 0 && i === EY + 1 ? 2700*K : 620*K);
   }
   $('dim').classList.remove('on'); $('eyes').classList.remove('on');
   document.body.classList.remove('eye'); eyeMode = false;
-  setTimeout(() => L.forEach(l => l.classList.remove('eyeline')), 1500);
+  setTimeout(() => L.forEach(l => l.classList.remove('eyeline')), 2000);
   document.querySelector('.bG').style.opacity = 1;       // isti qızılı parıltı
   $('card').classList.add('glow');
-  await sleep(1200*K);
-  $('closing').classList.add('in'); $('flowers').classList.add('in');
-  await sleep(2200*K);
+  await sleep(1650*K);
+  $('closing').classList.add('in');
+  await sleep(700*K);
+  $('flowers').classList.add('in');
+  await sleep(3000*K);
   $('wishbox').classList.add('in'); follow($('wishbox'));
-  setTimeout(revealSecret, 9000*K);
+  setTimeout(revealSecret, 12000*K);
 }
 function revealSecret(){
   const b = $('secretBtn'); if(b.style.display === 'block') return;
@@ -331,12 +333,26 @@ $('secretClose').onclick = () => { const s = $('secret'); s.classList.remove('on
 
 /* ===== Musiqi (autoplay yoxdur) ===== */
 let audio = null, playing = false;
+function ensureAudio(){
+  if(audio) return audio;
+  audio = new Audio(MUSIC_SRC);
+  audio.loop = true;
+  audio.volume = .55;
+  audio.addEventListener('error', () => {
+    console.error('Musiqi yüklənmədi: "' + MUSIC_SRC + '" faylı index.html ilə eyni qovluqda tapılmadı və ya dəstəklənmir.');
+    playing = false;
+    $('music').textContent = 'Musiqi faylı tapılmadı';
+    setTimeout(() => { $('music').textContent = '♫ Musiqini aç'; }, 2200);
+  });
+  return audio;
+}
 $('music').onclick = () => {
   const b = $('music');
   if(!MUSIC_SRC){ b.textContent = 'Musiqi faylı əlavə olunmayıb'; setTimeout(() => b.textContent = '♫ Musiqini aç', 2200); return; }
-  if(!audio){ audio = new Audio(MUSIC_SRC); audio.loop = true; audio.volume = .6; }
-  if(playing){ audio.pause(); playing = false; b.textContent = '♫ Musiqini aç'; }
-  else audio.play().then(() => { playing = true; b.textContent = '❚❚ Səssiz'; }).catch(() => {});
+  ensureAudio();
+  if(playing){ audio.pause(); playing = false; b.textContent = '♫ Musiqini aç'; return; }
+  audio.play().then(() => { playing = true; b.textContent = '❚❚ Səssiz'; })
+    .catch(err => { console.error('Musiqi başlamadı:', err); b.textContent = 'Musiqi başlamadı'; setTimeout(() => { b.textContent = '♫ Musiqini aç'; }, 2200); });
 };
 
 /* ===== Geri sayım ===== */
